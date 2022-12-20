@@ -39,6 +39,18 @@ class EventRepository extends ServiceEntityRepository
         }
     }
 
+    public function getDate(): string
+    {
+        $date = $this->createQueryBuilder('event')
+            ->select('DISTINCT event')
+            ->andWhere('event.date LIKE :date')
+            ->getQuery()
+            ->getResult()
+            ;
+
+        return $date->format(('H:i:s'));
+    }
+
 //    /**
 //     * @return Event[] Returns an array of Event objects
 //     */

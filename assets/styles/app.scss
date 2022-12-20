@@ -1,0 +1,58 @@
+@import '__var.scss';
+@import '__fonts.scss';
+@import '__breakpoints.scss';
+@import 'Home.scss';
+
+*, body
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'neue-haas-grotesk-text';
+    font-size: $fontSize;
+}
+
+body {
+    background-color: $backgroundColor;
+    color: $fontColor;
+
+    .header
+    {
+        padding: $padding*1.5  $padding*2;
+        height: 90px;
+        width:100%;
+
+        nav
+        {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: $padding;
+            height: 100%;
+            width:100%;
+            background: $elementBackground;
+            border-radius: 10px;
+
+            color: $mainColor;
+
+            .desktop_links
+            {
+                display: none;
+                justify-content: space-between;
+
+                @include lg
+                {
+                    display:flex;
+                }
+
+                p
+                {
+                    margin: $padding * 2;
+                    color: $fontColor;
+
+                }
+            }
+        }
+    }
+
+}

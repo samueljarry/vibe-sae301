@@ -44,6 +44,13 @@ class Event
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        $date = $this->date;
+
+        return $date->format(('d/m/Y'));
+    }
+
     public function getTitle(): ?string
     {
         return $this->title;

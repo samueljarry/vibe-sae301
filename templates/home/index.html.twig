@@ -1,7 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}VIBE{% endblock %}
 
 {% block body %}
-<h1>Bienvenue sur la page d'accueil</h1>
+    <div class="marquee_wrapper">
+        <div class="marquee_container">
+            <span class="marquee_item"></span>
+            <span class="marquee_item"></span>
+        </div>
+    </div>
+    <section class="events_section">
+        {% for event in events %}
+            <a href={{ path('') }}>
+            <div class="event_container">
+                <div class="event_cover">
+                    <img src="{{ asset('events/' ~event.cover) }}" alt="affiche {{ event.title }}">
+                </div>
+                <div class="event_price_category">
+                    <span><img class="icon" src="{{ asset('assets/ticket.svg') }}"> {{ event.price }}€</span><span>{{ event.category.name }}</span>
+                </div>
+                <div class="event_infos">
+                    <strong class="event_title">{{ event.title }}</strong>
+                    <span class="event_date"><img class="icon" src="{{ asset('assets/date.svg') }}"> {{ event.__toString() }}</span>
+                    <span class="event_location"><img class="icon" src="{{ asset('assets/pin.svg') }}">{{ event.location.name }}</span>
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+    </section>
 {% endblock %}
