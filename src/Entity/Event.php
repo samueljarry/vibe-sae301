@@ -21,12 +21,6 @@ class Event
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $casting = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $genre = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $cover = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
@@ -38,6 +32,12 @@ class Event
     #[ORM\ManyToOne(inversedBy: 'events')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Location $location = null;
+
+    #[ORM\ManyToOne(inversedBy: 'events')]
+    private ?Category $category = null;
+
+    #[ORM\Column]
+    private array $casting = [];
 
     public function getId(): ?int
     {
@@ -64,30 +64,6 @@ class Event
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getCasting(): ?string
-    {
-        return $this->casting;
-    }
-
-    public function setCasting(?string $casting): self
-    {
-        $this->casting = $casting;
-
-        return $this;
-    }
-
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(?string $genre): self
-    {
-        $this->genre = $genre;
 
         return $this;
     }
@@ -136,6 +112,30 @@ class Event
     public function setLocation(?Location $location): self
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getCasting(): array
+    {
+        return $this->casting;
+    }
+
+    public function setCasting(array $casting): self
+    {
+        $this->casting = $casting;
 
         return $this;
     }

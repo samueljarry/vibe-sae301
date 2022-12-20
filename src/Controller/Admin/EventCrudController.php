@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Event;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use LocationCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -26,11 +27,17 @@ class EventCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             TextField::new('title'),
             TextEditorField::new('description'),
-            MoneyField::new('price')->setCurrency('EUR'),
-            ImageField::new('cover')->setUploadDir('assets/images'),
-            AssociationField::new('location', 'Lieux')->setCrudController(LocationCrudController::class),
-            TextField::new('casting'),
-            TextField::new('genre'),
+            MoneyField::new('price')
+                ->setCurrency('EUR'),
+            ImageField::new('cover')
+                ->setBasePath('events/')
+                ->setUploadDir('assets/images/events')
+                ->setUploadedFileNamePattern('[randomhash].[extension]'),
+            AssociationField::new('location', 'Lieux')
+                ->setCrudController(LocationCrudController::class),
+            AssociationField::new('category', 'Catégorie')
+                ->setCrudController(CategoryCrudController::class),
+            ArrayField::new('casting'),
             DateTimeField::new('date')
         ];
     }

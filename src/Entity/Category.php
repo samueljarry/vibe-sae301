@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\LocationRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: LocationRepository::class)]
-class Location
+#[ORM\Entity(repositoryClass: CategoryRepository::class)]
+class Category
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,16 +18,7 @@ class Location
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $address = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $city = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $capability = null;
-
-    #[ORM\OneToMany(mappedBy: 'location', targetEntity: Event::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Event::class)]
     private Collection $events;
 
     public function __construct()
@@ -57,42 +48,6 @@ class Location
         return $this;
     }
 
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function setCity(string $city): self
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function getCapability(): ?int
-    {
-        return $this->capability;
-    }
-
-    public function setCapability(?int $capability): self
-    {
-        $this->capability = $capability;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Event>
      */
@@ -105,7 +60,7 @@ class Location
     {
         if (!$this->events->contains($event)) {
             $this->events->add($event);
-            $event->setLocation($this);
+            $event->setCategory($this);
         }
 
         return $this;
@@ -115,8 +70,8 @@ class Location
     {
         if ($this->events->removeElement($event)) {
             // set the owning side to null (unless already changed)
-            if ($event->getLocation() === $this) {
-                $event->setLocation(null);
+            if ($event->getCategory() === $this) {
+                $event->setCategory(null);
             }
         }
 
