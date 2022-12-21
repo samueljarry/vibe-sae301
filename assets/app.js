@@ -1,5 +1,5 @@
 import './styles/app.scss';
-import './js/Animations'
+import Animations from "./js/Animations";
+import Cart from './js/Cart'
 
-console.log('test')
-let animations = new Animations()
+new Cart()
