@@ -1,0 +1,321 @@
+.event_reservation_wrapper
+{
+  position:absolute;
+  z-index: -1;
+
+  display: flex;
+  flex-direction: column;
+
+  top:0;
+  left:0;
+
+  width:100vw;
+
+  @include lg
+  {
+    position:relative;
+    flex-direction: row;
+  }
+
+  .reservation_img_container
+  {
+    width:100%;
+
+    @include lg
+    {
+      position: sticky;
+      top: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: end;
+      width: 40%;
+      height:fit-content;
+    }
+
+    img
+    {
+      width:100%;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+
+      @include lg
+      {
+        width: 50%;
+        border-radius: 20px;
+      }
+    }
+
+    .reservation_button
+    {
+      display: none;
+
+      @include lg
+      {
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        position:relative;
+        display: flex;
+        top: 20px;
+        bottom:unset;
+        left:unset;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .reservation_main
+  {
+    display: flex;
+    flex-direction: column;
+    width:100vw;
+    margin-bottom: 100px;
+
+    @include lg
+    {
+      position:relative;
+      top:0;
+      left: $padding * 5;
+      width: 30vw;
+    }
+
+    .event_reservation_infos_wrapper
+    {
+      position:relative;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      left: 10%;
+      bottom: 70px;
+      width: 80%;
+      height: fit-content;
+
+      padding: $padding * 2;
+      background: $elementBackground;
+      border-radius: 20px;
+
+      @include lg
+      {
+        width:100%;
+        left:unset;
+        justify-content: start;
+        bottom: unset;
+        margin-bottom: 20px;
+        padding: $padding*3;
+      }
+
+      strong
+      {
+        font-weight: 400;
+        line-height: $fontSize* 1.5;
+
+        @include lg
+        {
+          font-size: $fontSize*1.25;
+          margin-bottom: 10px;
+        }
+      }
+
+      .reservation_title
+      {
+        font-weight: 400;
+        margin-bottom: 5px;
+        font-size: $fontSize * 1.5;
+
+        @include lg
+        {
+          font-size: $fontSize * 2.5;
+          line-height: $fontSize *2.5;
+          margin-bottom: 20px;
+        }
+      }
+
+      .reservation_address
+      {
+        color: $mainColor;
+      }
+
+      .event_reservation_infos_container
+      {
+        position:relative;
+        top:5px;
+        display: flex;
+        justify-content: space-between;
+        width:100%;
+
+        @include lg
+        {
+          flex-direction: column;
+        }
+
+        .reservation_date, .reservation_price
+        {
+          display: flex;
+          align-items: center;
+
+          img
+          {
+            position:relative;
+            height: 25px;
+            right: 10px;
+
+            @include lg
+            {
+              height: 35px;
+            }
+          }
+        }
+
+        .reservation_price
+        {
+          display: flex;
+          background: $mainColor;
+          border-radius: 15px;
+          padding: $padding $padding*2;
+          color: $elementBackground;
+
+          @include lg
+          {
+            width: fit-content;
+            margin-bottom: 10px;
+            font-size: $fontSize * 1.1;
+          }
+        }
+
+        .reservation_date
+        {
+          color: $mainColor;
+
+          @include lg
+          {
+            padding: $padding;
+            font-size: $fontSize * 1.1;
+          }
+        }
+      }
+    }
+
+    .reservation_description
+    {
+      position:relative;
+      bottom: 40px;
+      padding: $padding $padding * 2;
+      line-height: $fontSize * 1.5;
+      font-size: $fontSize;
+      border-bottom: 1px solid $fontColor;
+
+      @include lg
+      {
+        bottom: unset;
+      }
+    }
+  }
+
+  .reservation_subtitle
+  {
+    font-size: $fontSize * 1.3;
+    margin-bottom: $padding * 2;
+    font-weight: 200;
+  }
+
+  .reservation_line_up
+  {
+    position:relative;
+    bottom:20px;
+    padding: 0 $padding * 2;
+    width:100%;
+    border-bottom: 1px solid $fontColor;
+
+    @include lg
+    {
+      top: 20px;
+    }
+
+    .reservation_artist
+    {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: $padding;
+
+      .reservation_artist_icon
+      {
+        width: 50px;
+        height:50px;
+        background: $mainColor;
+        border-radius: 50%;
+      }
+
+      .reservation_artist_name
+      {
+        font-size: $fontSize * 1.25;
+      }
+    }
+  }
+
+  .reservation_room
+  {
+    display: flex;
+    flex-direction: column;
+
+    padding: $padding*2;
+    margin-bottom: 20px;
+
+    @include lg
+    {
+      position:relative;
+      top: 20px;
+      margin-bottom: unset;
+    }
+
+    .reservation_room_name
+    {
+      font-size: $fontSize*1.75;
+    }
+
+    .reservation_address, .reservation_room_name
+    {
+      font-weight: 200;
+      margin-bottom: 10px;
+    }
+
+    .reservation_capability
+    {
+      span
+      {
+        background: $mainColor;
+        padding: $padding/2;
+        border-radius: 5px;
+      }
+    }
+
+  }
+
+  .reservation_button
+  {
+    position:fixed;
+
+    width: 80%;
+    height: fit-content;
+
+    left: 10%;
+    bottom: 20px;
+    padding:$padding*2;
+
+    color: $backgroundColor;
+    background: $mainColor;
+    border-radius:10px;
+    font-weight: 500;
+    text-align:center;
+    text-transform: uppercase;
+
+    @include lg
+    {
+      display:none;
+    }
+  }
+}

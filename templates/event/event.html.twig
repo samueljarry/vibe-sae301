@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ event.title }} Billets | {{ event.price }}€ | {{ event.__toString() }}{% endblock %}
+
+{% block body %}
+    <section class="event_reservation_wrapper">
+        <div class="reservation_img_container">
+            <img src="{{ asset('events/' ~event.cover) }}" alt="affiche pour l'évènement : {{ event.title }}" class="reservation_img">
+            <div class="reservation_button">
+                Réserver
+            </div>
+        </div>
+
+        <main class="reservation_main">
+            <div class="event_reservation_infos_wrapper">
+                <strong class="reservation_title">{{ event.title }}</strong>
+                <strong class="reservation_location">{{ event.location.name }}</strong>
+                <div class="event_reservation_infos_container">
+                    <div class="reservation_price">
+                        <img src="{{ asset('assets/pricetag.svg') }}" alt="icône d'étiquette de prix">
+                        {{ event.price }}€
+                    </div>
+                    <div class="reservation_date">
+                        <img src="{{ asset('assets/date.svg') }}" alt="icône de calendrier">
+                        {{ event.__toString() }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="reservation_description">
+                <h2 class="reservation_subtitle">À propos</h2>
+                {{ event.description | raw }}
+            </div>
+
+            <div class="reservation_line_up">
+                <h2 class="reservation_subtitle">
+                    Line-up
+                </h2>
+                {% for artist in event.casting %}
+                    <div class="reservation_artist">
+                        <div class="reservation_artist_icon"></div>
+
+                        <span class="reservation_artist_name">{{ artist }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="reservation_room">
+                <div class="reservation_subtitle">
+                    Salle
+                </div>
+                <strong class="reservation_room_name">{{ event.location.name }}</strong>
+                <strong class="reservation_address">{{ event.location.address }}, {{ event.location.city }}</strong>
+                <span class="reservation_capability">Places disponibles : <span>{{ event.location.capability }}</span></span>
+            </div>
+        </main>
+
+        <div class="reservation_button">
+            Réserver
+        </div>
+    </section>
+{% endblock %}

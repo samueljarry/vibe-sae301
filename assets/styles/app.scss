@@ -2,6 +2,7 @@
 @import '__fonts.scss';
 @import '__breakpoints.scss';
 @import 'Home.scss';
+@import 'Event.scss';
 
 *, body
 {
@@ -12,7 +13,14 @@
     font-size: $fontSize;
 }
 
+a
+{
+    text-decoration:none;
+    color: $fontColor;
+}
+
 body {
+    overscroll-behavior-y: none;
     background-color: $backgroundColor;
     color: $fontColor;
 
