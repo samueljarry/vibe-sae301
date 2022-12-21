@@ -1,7 +1,6 @@
 .event_reservation_wrapper
 {
   position:absolute;
-  z-index: -1;
 
   display: flex;
   flex-direction: column;
@@ -13,6 +12,7 @@
 
   @include lg
   {
+    z-index: 10;
     position:relative;
     flex-direction: row;
   }
@@ -52,15 +52,26 @@
 
       @include lg
       {
+        display: flex;
+
         justify-content: center;
         align-items: center;
         width: 50%;
         position:relative;
-        display: flex;
         top: 20px;
         bottom:unset;
         left:unset;
         cursor: pointer;
+        border: 1px solid $backgroundColor;
+        transition: .2s;
+
+        &:hover
+        {
+          transition: .2s;
+          color: $mainColor;
+          background: $elementBackground;
+          border: 1px solid $mainColor;
+        }
       }
     }
   }
@@ -164,7 +175,7 @@
 
             @include lg
             {
-              height: 35px;
+              height: 30px;
             }
           }
         }
@@ -288,7 +299,7 @@
       span
       {
         background: $mainColor;
-        padding: $padding/2;
+        padding: calc($padding/2);
         border-radius: 5px;
       }
     }
@@ -316,6 +327,158 @@
     @include lg
     {
       display:none;
+    }
+  }
+
+  .reservation_modal
+  {
+    position:fixed;
+    height: 200px;
+    width: 80%;
+
+    left:10%;
+    bottom: 20px;
+
+    padding: $padding;
+    background: $fontColor;
+    border-radius:10px;
+
+    @include lg
+    {
+      width: 40%;
+      left: 30%;
+    }
+
+    .reservation_modal_recap
+    {
+      display: flex;
+      width:100%;
+      justify-content: space-between;
+      align-items: start;
+
+      .recap
+      {
+        display: flex;
+        align-items: center;
+
+        img
+        {
+          height: 25px;
+
+          @include lg
+          {
+            height: 35px;
+          }
+        }
+
+        span
+        {
+          display: flex;
+          flex-direction: column;
+          color: $backgroundColor;
+
+          font-size: 12px;
+          line-height: 18px;
+          font-weight: 500;
+
+          @include lg
+          {
+            font-size: 18px;
+            line-height: 27px;
+          }
+        }
+      }
+
+      .close_reservation_modal
+      {
+        img
+        {
+          height: 25px;
+
+          &:hover
+          {
+            cursor: pointer;
+          }
+
+          @include lg
+          {
+            height: 35px;
+          }
+        }
+      }
+    }
+
+    .reservation_modal_tickets
+    {
+      position:relative;
+      top: 20px;
+      width:100%;
+      padding: $padding;
+      display: flex;
+      justify-content: space-evenly;
+      color: $backgroundColor;
+
+      @include lg
+      {
+        width: 50%;
+        left: 25%;
+        top: 10px;
+      }
+
+      .reservation_tickets_number
+      {
+        background:none;
+        border:none;
+        text-align:center;
+        -moz-appearance: textfield;
+        font-size: $fontSize * 2;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+
+      span
+      {
+        font-size: $fontSize * 2;
+        font-weight: 100;
+
+        -moz-user-select: none; /* Firefox */
+        -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
+        -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
+        user-select: none; /* Propriété standard */
+
+        &:hover
+        {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .reservation_add_to_cart
+    {
+      position:relative;
+      top: 40px;
+      left: 10%;
+      width: 80%;
+      padding: $padding;
+
+      border-radius: 30px;
+      background: $mainColor;
+      text-align:center;
+      font-size: 16px;
+
+      &:hover
+      {
+        cursor: pointer;
+      }
+
+      @include lg
+      {
+        top: 30px;
+      }
     }
   }
 }

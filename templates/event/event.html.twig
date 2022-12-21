@@ -6,7 +6,7 @@
     <section class="event_reservation_wrapper">
         <div class="reservation_img_container">
             <img src="{{ asset('events/' ~event.cover) }}" alt="affiche pour l'évènement : {{ event.title }}" class="reservation_img">
-            <div class="reservation_button lg">
+            <div class="reservation_button">
                 Réserver
             </div>
         </div>
@@ -18,10 +18,10 @@
                 <div class="event_reservation_infos_container">
                     <div class="reservation_price">
                         <img src="{{ asset('assets/pricetag.svg') }}" alt="icône d'étiquette de prix">
-                        {{ event.price }}€
+                        {{ event.price }} €
                     </div>
                     <div class="reservation_date">
-                        <img src="{{ asset('assets/date.svg') }}" alt="icône de calendrier">
+                        <img src="{{ asset('assets/calendar.svg') }}" alt="icône de calendrier">
                         {{ event.__toString() }}
                     </div>
                 </div>
@@ -55,8 +55,32 @@
             </div>
         </main>
 
-        <div class="reservation_button sm">
+        <div class="reservation_button">
             Réserver
+        </div>
+        <div class="reservation_modal">
+            <div class="reservation_modal_recap">
+                <div class="recap">
+                    <img src="{{ asset('assets/ticket.svg') }}" alt="icône de ticket">
+                    <span>
+                        <span class="reservation_title_name">{{ event.title }} - {{ event.location.name }}</span>
+                        <span>{{ event.price }} €</span>
+                    </span>
+                </div>
+                <div class="close_reservation_modal">
+                    <img src="{{ asset('assets/close.svg') }}" alt="icône de croix">
+                </div>
+            </div>
+            <div class="reservation_modal_tickets">
+                <span class="reservation_minus">-</span>
+                <input class="reservation_id" type="hidden" value="{{ event.id }}">
+                <input class="reservation_price_default" type="hidden" value="{{ event.price }}">
+                <input class="reservation_tickets_number" type="number" value="1" min="1" max="99">
+                <span class="reservation_plus">+</span>
+            </div>
+            <div class="reservation_add_to_cart">
+                Ajouter au panier - {{ event.price }} €
+            </div>
         </div>
     </section>
 {% endblock %}

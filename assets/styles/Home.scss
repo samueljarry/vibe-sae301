@@ -84,7 +84,7 @@
         border-radius: 5px;
         color: $fontColor;
         font-weight: 500;
-        padding: $padding / 2 $padding * 1.5;
+        padding: calc($padding / 2) $padding * 1.5;
 
         .icon
         {
@@ -110,7 +110,7 @@
       .icon
       {
         height: 30px;
-        margin-right: $padding / 2;
+        margin-right: calc($padding / 2);
       }
 
       .event_title

@@ -26,6 +26,8 @@ body {
 
     .header
     {
+        position:relative;
+        z-index: 1000;
         padding: $padding*1.5  $padding*2;
         height: 90px;
         width:100%;
@@ -43,21 +45,45 @@ body {
 
             color: $mainColor;
 
-            .desktop_links
+            .nav_links
             {
-                display: none;
+                display: flex;
+                align-items: center;
                 justify-content: space-between;
 
-                @include lg
+                a
                 {
-                    display:flex;
+                    color: $fontColor;
+                    margin: calc($padding/2);
+
+                    @include lg
+                    {
+                        margin: $padding*2;
+                    }
+
+                    img
+                    {
+                        width: 20px;
+                        height: 20px;
+
+                        @include lg
+                        {
+                            height: 25px;
+                            width: 25px;
+                        }
+                    }
                 }
 
-                p
+                .nav_theater
                 {
-                    margin: $padding * 2;
-                    color: $fontColor;
+                    height: 22px;
+                    width:22px;
 
+                    @include lg
+                    {
+                        height: 29px;
+                        width: 29px;
+                    }
                 }
             }
         }
