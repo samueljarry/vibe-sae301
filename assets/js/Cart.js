@@ -104,10 +104,14 @@ export default class Cart
         const panier = document.querySelector('.panier')
 
         this.articles.forEach(article => nbArticles += article.quantity)
+        panier.innerHTML = nbArticles
         if(nbArticles > 0)
         {
             panier.style.display = 'flex'
-            panier.innerHTML = nbArticles
+        }
+        else
+        {
+            panier.style.display = 'none'
         }
     }
 
@@ -219,9 +223,14 @@ export default class Cart
                             <div>
                                 <img class="cart_ticket_icon" src="${ticket}" alt="icône de ticket">
                             </div>
-                            <div class="cart_infos">
-                                <strong>${name}</strong>
-                                <span>${date}</span>
+                            <div class="cart_infos_delete">
+                                <div class="cart_infos">
+                                    <strong>${name}</strong>
+                                    <span>${date}</span>
+                                </div>
+                                <div class="delete_article">
+                                    <img src="${document.querySelector('.empty_cart span img').src}" alt="icône de poubelle">
+                                </div>
                             </div>
                         </div>
                         <div class="cart_tickets_qty">
@@ -243,15 +252,52 @@ export default class Cart
                 </div>`
         })
 
+        // Retirer UNE place
         const minus = document.querySelectorAll('.cart_minus')
         minus.forEach(button => button.addEventListener('click', () => this.handleCartButtons(button, -1)))
 
+        // Rajouter UNE place
         const plus = document.querySelectorAll('.cart_plus')
         plus.forEach(button => button.addEventListener('click', () => this.handleCartButtons(button, +1)))
 
-        let nbPlaces =  document.querySelectorAll('.cart_article_tickets')
+        // Changer nombre de places manuellement
+        const nbPlaces =  document.querySelectorAll('.cart_article_tickets')
         nbPlaces.forEach(article => article.addEventListener('change', () => this.setCartArticlePrice(article)))
         this.setCartTotalPrice()
+
+        // Supprimer UN article du panier
+        const delArticles = document.querySelectorAll('.delete_article img')
+        delArticles.forEach(article => article.addEventListener('click', () => this.removeCartArticle(article, articlesSection)))
+
+        // Supprimer TOUT le panier
+        document.querySelector('.empty_cart').addEventListener('click', () => this.emptyCart(articlesSection))
+    }
+
+    emptyCart(section)
+    {
+        this.articles = []
+        document.cookie = `cart=${JSON.stringify(this.articles)}; path=/`
+        document.querySelectorAll('.cart_article_wrapper').forEach(article =>
+        {
+            section.removeChild(article)
+        })
+
+        this.setCartTotalPrice()
+        this.updateNbArticles()
+    }
+
+    removeCartArticle(article, section)
+    {
+        const articleId = article.parentNode.parentNode.parentNode.parentNode.querySelector('.cart_article_id').value
+        const arrayId = this.articles.findIndex(article => article.id === articleId)
+
+        this.articles.splice(arrayId,  1)
+        section.removeChild(document.querySelectorAll('.cart_article_wrapper')[arrayId])
+
+        document.cookie = `cart=${JSON.stringify(this.articles)}; path=/`
+
+        this.setCartTotalPrice()
+        this.updateNbArticles()
     }
 
     setCartArticlePrice(article)
