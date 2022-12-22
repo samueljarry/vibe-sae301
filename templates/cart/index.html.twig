@@ -17,12 +17,13 @@
             <div class="cart_divider"></div>
             <strong>Total: <span class="total"></span><span>€</span></strong>
             <div class="cart_divider"></div>
-            <div class="cart_checkout">
-                <a href="{{ path('cart_confirm') }}">Paiement</a>
-            </div>
+            <a class="cart_checkout" href="{{ path('cart_confirm') }}">Paiement</a>
         </section>
-        <div class="cart_checkout">
-            <a href="{{ path('cart_confirm') }}">Paiement</a>
-        </div>
+        <a class="cart_checkout" href="{{ path('cart_confirm') }}">Paiement</a>
+        <section class="cart_is_empty">
+            <img src="{{ asset('assets/cart.svg') }}" alt="icône de panier">
+            <h1>Oups, on dirait que vous n'avez rien ajouté à votre panier. </h1>
+            <a href="{{ path('app_home') }}">Voir les évènements disponibles</a>
+        </section>
     </main>
 {% endblock %}

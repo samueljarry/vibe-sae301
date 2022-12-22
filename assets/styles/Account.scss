@@ -1,0 +1,143 @@
+.account_wrapper
+{
+  width:100vw;
+  padding: $padding*2;
+
+  .orders_wrapper
+  {
+    @include lg
+    {
+      padding: $padding*2;
+    }
+  }
+  strong
+  {
+    font-size: $fontSize *1.5;
+  }
+
+  .orders_list_wrapper
+  {
+    display: flex;
+    width: 100%;
+    position:relative;
+    height: fit-content;
+    overflow-x: scroll;
+    justify-content: flex-start;
+
+    .orders_list_container
+    {
+      display: flex;
+      flex-direction: row-reverse;
+      .order_wrapper
+      {
+        width: 60vw;
+        min-width:300px;
+        max-width:350px;
+        height: 400px;
+
+        background: $elementBackground;
+        border-radius:20px;
+        margin: $padding;
+
+        .order_name
+        {
+          display: flex;
+          align-items: center;
+          width:100%;
+          background: $mainColor;
+          color: $backgroundColor;
+          height: fit-content;
+          padding: $padding $padding*2;
+
+          font-size: $fontSize * 0.9;
+          border-top-right-radius: 20px;
+          border-top-left-radius: 20px;
+        }
+
+        .order_main
+        {
+          padding: $padding $padding*3;
+
+          .order_price
+          {
+            margin: 5px 0;
+            padding: 2px 10px;
+            background: $mainColor;
+            width:fit-content;
+            border-radius:10px;
+          }
+
+          .order_divider
+          {
+            margin: 10px;
+            position:relative;
+            border-bottom: 1px solid $lightGray;
+            width: 100%;
+          }
+
+          .order_list
+          {
+            width:100%;
+            height: 200px;
+            margin-bottom: 15px;
+            overflow-x: scroll;
+            .order_row
+            {
+              display: flex;
+              width:100%;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 15px;
+
+              .order_row_name
+              {
+                width: 70%;
+              }
+
+              .order_qty_price
+              {
+                display: flex;
+                justify-content: space-between;
+                width:25%;
+                span
+                {
+                  &:first-child
+                  {
+                    position:relative;
+                    right:10px;
+                  }
+                  &:last-child
+                  {
+                    color:$mainColor;
+                  }
+                }
+              }
+            }
+          }
+
+          .download_pdf
+          {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding:$padding;
+            border-radius:10px;
+
+            background: $mainColor;
+            color: $backgroundColor;
+
+            &:hover
+            {
+              cursor:pointer;
+            }
+
+            img
+            {
+              height: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

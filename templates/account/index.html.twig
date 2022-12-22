@@ -1,20 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
+{% block title %} VIBE | Votre profil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/sam/tp_docker/www/sae301/src/Controller/AccountController.php'|file_link(0) }}">src/Controller/AccountController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/sam/tp_docker/www/sae301/templates/account/index.html.twig'|file_link(0) }}">templates/account/index.html.twig</a></code></li>
-    </ul>
-</div>
+<section class="account_wrapper">
+    <div class="orders_wrapper">
+        <strong>Vos commandes</strong>
+        <section class="orders_list_wrapper">
+            <div class="orders_list_container">
+                {% for order in orders %}
+                    <div class="order_wrapper">
+                        <div class="order_name">
+                            {% for firstEvent in order.events[:1] %}
+                                {{ firstEvent.name }} - {{ firstEvent.location }}
+                            {% endfor %}
+                        </div>
+                        <div class="order_main">
+                        <span class="order_date">
+                            {{ order.date | date ('d M Y') }}
+                        </span>
+                            <div class="order_price">
+                                {{ order.price }}€
+                            </div>
+                            <div class="order_divider"></div>
+                            <div class="order_list">
+                                {% for event in order.events %}
+                                    <div class="order_row">
+                                        <div class="order_row_name">
+                                            <span>{{ event.name }}</span>
+                                        </div>
+                                        <div class="order_qty_price">
+                                            <span>x{{ event.quantity }}</span>
+                                            <span>{{ event.price * event.quantity }}€</span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="download_pdf">
+                                <span>Télécharger la facture</span>
+                                <img src="{{ asset('assets/download.svg') }}" alt="icône de téléchargement">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</section>
 {% endblock %}

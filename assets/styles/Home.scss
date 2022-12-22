@@ -23,9 +23,10 @@
 {
   position:relative;
   width: 100vw;
-  overflow-x: scroll;
+  overflow-x: auto;
   display: flex;
   padding: $padding;
+  background:red;
 
   &::-webkit-scrollbar
   {

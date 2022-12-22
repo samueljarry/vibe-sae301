@@ -16,8 +16,10 @@ class AccountController extends AbstractController
             return $this->redirectToRoute('app_login', ["cart"=>true]);
         }
 
+        $orders = $this->getUser()->getOrders();
         return $this->render('account/index.html.twig', [
             'controller_name' => 'AccountController',
+            'orders' => $orders
         ]);
     }
 }

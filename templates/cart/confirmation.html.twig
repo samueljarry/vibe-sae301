@@ -4,7 +4,7 @@
 
 {% block body %}
     <main class="confirmation_wrapper">
-        <form class="confirmation_form" action="{# path('') #}" method="post">
+        <form class="confirmation_form" id="confirmation_form" action=" {{ path('cart_payment') }} " method="post">
             <div class="strong">
                 <strong >Livraison</strong>
             </div>
@@ -24,13 +24,13 @@
 
             <div class="cities">
                 <div>
-                    <label for="city">Ville</label>
-                    <input type="text" name="city" placeholder="Paris" required>
+                    <label for="postalCode">Code postal</label>
+                    <input type="number" name="postal_code" placeholder="75000" required>
                 </div>
 
                 <div>
-                    <label for="postalCode">Code postal</label>
-                    <input type="text" name="postalCode" placeholder="75000" required>
+                    <label for="city">Ville</label>
+                    <input type="text" name="city" placeholder="Paris" required>
                 </div>
             </div>
 
@@ -38,21 +38,21 @@
                 <strong >Paiement</strong>
             </div>
             <label for="owner">Titulaire</label>
-            <input type="text" name="owner" placeholder="John Doe" required>
+            <input type="text" name="owner" placeholder="John Doe">
 
             <div class="card_num">
                 <div>
                     <label for="cardnum">Numéro de la carte</label>
-                    <input type="number" name="cardnum" placeholder="XXXX XXXX XXXX XXXX" required>
+                    <input type="number" name="cardnum" placeholder="XXXX XXXX XXXX XXXX">
                 </div>
                 <div>
                     <label for="cryptogram">Cryptogramme</label>
-                    <input type="number" name="cryptogram" placeholder="000" required>
+                    <input type="number" name="cryptogram" placeholder="000">
                 </div>
             </div>
 
             <label for="expdate">Date d'expiration</label>
-            <input type="number" name="expdate" placeholder="00/00" required>
+            <input type="number" name="expdate" placeholder="00/00">
         </form>
         <section class="cart_resume">
             <div class="strong">
@@ -64,9 +64,7 @@
             <div class="resume_total">
 
             </div>
-                <a href="#" class="confirm_payment">
-                    Valider la commande
-                </a>
+            <input class="confirm_payment"type="submit" form="confirmation_form" value="Valider la commande">
         </section>
     </main>
 {% endblock %}

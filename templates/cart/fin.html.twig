@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VIBE | Merci !{% endblock %}
+
+{% block body %}
+<section class="thanks_for_your_order">
+    <h1>Merci !</h1>
+    <p>Votre commande a bien été traitée, vous pouvez désormais suivre son avancement sur votre profil.</p>
+    <a href="{{ path('app_home') }}">Retour à l'accueil</a>
+</section>
+{% endblock %}

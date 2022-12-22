@@ -244,3 +244,56 @@
     }
   }
 }
+
+.thanks_for_your_order
+{
+  padding: $padding *2;
+  width:100vw;
+  height:calc(100vh - 90px);
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  text-align: center;
+
+  h1
+  {
+    position:relative;
+    top:20%;
+    font-size: $fontSize * 5;
+    color: $mainColor;
+  }
+
+  p
+  {
+    position:relative;
+    top: 30%;
+    font-size: $fontSize *1.25;
+  }
+
+  a
+  {
+    position:relative;
+    top: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width:fit-content;
+    height:fit-content;
+    padding:$padding*2 $padding;
+
+    color: $backgroundColor;
+    background: $mainColor;
+    border-radius: 10px;
+    border: 1px solid $mainColor;
+    transition: 0.2s;
+    font-weight:500;
+
+    &:hover
+    {
+      cursor: pointer;
+      background: $backgroundColor;
+      color: $mainColor;
+    }
+  }
+}

@@ -316,15 +316,60 @@
     font-weight: 500;
     text-align:center;
     text-transform: uppercase;
+    color: $backgroundColor;
+    transition: 0.2s;
+    border: 1px solid $mainColor;
 
-    a
+    &:hover
     {
-      color: $backgroundColor;
+      background: $backgroundColor;
+      color: $mainColor;
+      transition: 0.2s;
     }
 
     @include lg
     {
       display: none;
+    }
+  }
+
+  .cart_is_empty
+  {
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top:0;
+    left:0;
+    width:100vw;
+    height: calc(100vh - 90px);
+    display: none;
+
+    img
+    {
+      position:relative;
+      top: 10%;
+      height: 40%;
+    }
+
+    h1
+    {
+      position:relative;
+      top: 10%;
+      font-size: $fontSize * 1.7;
+      text-align: center;
+    }
+
+    a
+    {
+      position:relative;
+      top:20%;
+      padding:$padding * 2;
+      width: fit-content;
+      height: fit-content;
+      background: $mainColor;
+      color: $backgroundColor;
+      border-radius: 10px;
     }
   }
 }

@@ -5,6 +5,7 @@
 @import 'Event.scss';
 @import 'Cart.scss';
 @import 'CartConfirmation.scss';
+@import 'Account.scss';
 
 *, body
 {
@@ -25,6 +26,7 @@ body {
     overscroll-behavior-y: none;
     background-color: $backgroundColor;
     color: $fontColor;
+    user-select: none;
 
     .header
     {

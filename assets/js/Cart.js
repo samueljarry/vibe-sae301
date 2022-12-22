@@ -19,9 +19,19 @@ export default class Cart
             this.displayCart()
         }
 
+        // Ne se lance que si on est à la page de confirmation du panier
         if(document.querySelector('.confirmation_wrapper'))
         {
             this.displayConfirmationCart()
+        }
+
+        // Si la commande est passée, alors on vide le panier
+        if(document.querySelector('.thanks_for_your_order'))
+        {
+            this.articles = []
+            document.cookie = `cart=${JSON.stringify(this.articles)}; path=/`
+
+            this.updateNbArticles()
         }
     }
 
@@ -60,7 +70,7 @@ export default class Cart
         const { id, name, price, quantity, cover, date, location, ticket } =
         {
             id: document.querySelector('.reservation_id').value,
-            name: document.querySelector('.reservation_title_name').innerText,
+            name: document.querySelector('.reservation_title').innerText,
             price: document.querySelector('.reservation_price_default').value,
             quantity: parseInt(document.querySelector('.reservation_tickets_number').value),
             cover: document.querySelector('.reservation_img').src,
@@ -117,6 +127,15 @@ export default class Cart
         else
         {
             panier.style.display = 'none'
+
+            // Afficher la modale informant que le panier est vide sur la page panier
+            if(document.querySelector('.cart_total_wrapper'))
+            {
+                document.querySelector('.cart_total_wrapper').style.display = 'none'
+                document.querySelector('.cart_articles_section').style.display = 'none'
+                document.querySelectorAll('.cart_checkout').forEach(dom => dom.style.display = 'none')
+                document.querySelector('.cart_is_empty').style.display = 'flex'
+            }
         }
     }
 
@@ -275,7 +294,7 @@ export default class Cart
 
         // Changer nombre de places manuellement
         const nbPlaces =  document.querySelectorAll('.cart_article_tickets')
-        nbPlaces.forEach(article => article.addEventListener('change', () => this.setCartArticlePrice(article)))
+        nbPlaces.forEach(article => article.addEventListener('change', () =>  this.setCartArticlePrice(article)))
         this.setCartTotalPrice()
 
         // Supprimer UN article du panier
@@ -323,7 +342,7 @@ export default class Cart
         let quantity = parseFloat(quantitySpan.value)
         const id = button.parentNode.querySelector('.cart_article_id').value
 
-        if(quantity + method >= 0)
+        if(quantity + method > 0)
         {
             quantity += method
             quantitySpan.value = quantity
@@ -346,7 +365,7 @@ export default class Cart
         let quantity = parseFloat(article.value)
         const id = article.parentNode.querySelector('.cart_article_id').value
 
-        if(quantity >= 0)
+        if(quantity > 0)
         {
             let price = parseFloat(article.parentNode.querySelector('.cart_article_price').value)
             const totalPrice = article.parentNode.parentNode.querySelector('.cart_tickets_price').innerHTML = `${price * quantity} €`

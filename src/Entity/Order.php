@@ -39,6 +39,9 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?User $user = null;
 
+    #[ORM\Column(type: Types::ARRAY)]
+    private array $events = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -123,7 +126,7 @@ class Order
 
     public function setPostalCode(int $postalCode): self
     {
-        $this->price = $postalCode;
+        $this->postalCode = $postalCode;
 
         return $this;
     }
@@ -136,6 +139,18 @@ class Order
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getEvents(): array
+    {
+        return $this->events;
+    }
+
+    public function setEvents(array $events): self
+    {
+        $this->events = $events;
 
         return $this;
     }
