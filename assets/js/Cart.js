@@ -18,6 +18,11 @@ export default class Cart
         {
             this.displayCart()
         }
+
+        if(document.querySelector('.confirmation_wrapper'))
+        {
+            this.displayConfirmationCart()
+        }
     }
 
     getCookie(cookieName)
@@ -180,11 +185,14 @@ export default class Cart
         boutonAjout.addEventListener('click', () =>
         {
             this.updateCart()
+            this.modalAnimation.reverse(0)
+            isModalActive = false
             places.value = 1
             changePrixTotal()
         })
     }
 
+    // Cacher la modale par défaut
     setReservationModal()
     {
         gsap.timeline()
@@ -195,20 +203,23 @@ export default class Cart
         })
     }
 
+    // Afficher ou Cacher la modale en fonction de la méthode
     toggleReservationModal()
     {
         this.modalAnimation = gsap.timeline()
-            .set('.reservation_modal',
-            {
-                display:'block',
-            })
-            .to('.reservation_modal',
-            {
-                y: 0
-            })
+        .set('.reservation_modal',
+        {
+            display:'block',
+        })
+        .to('.reservation_modal',
+        {
+            y: 0
+        })
     }
 
     /* Méthode de la page panier */
+
+    // Afficher les articles du panier + Setup des listeners
     displayCart()
     {
         const articles = JSON.parse(this.getCookie('cart'))
@@ -252,6 +263,8 @@ export default class Cart
                 </div>`
         })
 
+        /* Listeners */
+
         // Retirer UNE place
         const minus = document.querySelectorAll('.cart_minus')
         minus.forEach(button => button.addEventListener('click', () => this.handleCartButtons(button, -1)))
@@ -273,6 +286,7 @@ export default class Cart
         document.querySelector('.empty_cart').addEventListener('click', () => this.emptyCart(articlesSection))
     }
 
+    // Vider le panier
     emptyCart(section)
     {
         this.articles = []
@@ -286,6 +300,8 @@ export default class Cart
         this.updateNbArticles()
     }
 
+
+    // Supprimer UN article du panier
     removeCartArticle(article, section)
     {
         const articleId = article.parentNode.parentNode.parentNode.parentNode.querySelector('.cart_article_id').value
@@ -300,26 +316,7 @@ export default class Cart
         this.updateNbArticles()
     }
 
-    setCartArticlePrice(article)
-    {
-        let quantity = parseFloat(article.value)
-        const id = article.parentNode.querySelector('.cart_article_id').value
-
-        if(quantity >= 0)
-        {
-            let price = parseFloat(article.parentNode.querySelector('.cart_article_price').value)
-            const totalPrice = article.parentNode.parentNode.querySelector('.cart_tickets_price').innerHTML = `${price * quantity} €`
-
-
-            /* Cookie */
-            const articleIndex = this.articles.findIndex(article => article.id === id)
-            this.articles[articleIndex].quantity = quantity
-            document.cookie = `cart=${JSON.stringify(this.articles)}; path=/`
-
-            this.setCartTotalPrice()
-        }
-    }
-
+    // Prise en charge des boutons + et - pour changer le prix total individuel et la quantité des places
     handleCartButtons(button, method)
     {
         let quantitySpan =  button.parentNode.querySelector('.cart_article_tickets')
@@ -343,6 +340,28 @@ export default class Cart
         }
     }
 
+    // Définir le prix total individuel d'un article du panier
+    setCartArticlePrice(article)
+    {
+        let quantity = parseFloat(article.value)
+        const id = article.parentNode.querySelector('.cart_article_id').value
+
+        if(quantity >= 0)
+        {
+            let price = parseFloat(article.parentNode.querySelector('.cart_article_price').value)
+            const totalPrice = article.parentNode.parentNode.querySelector('.cart_tickets_price').innerHTML = `${price * quantity} €`
+
+
+            /* Cookie */
+            const articleIndex = this.articles.findIndex(article => article.id === id)
+            this.articles[articleIndex].quantity = quantity
+            document.cookie = `cart=${JSON.stringify(this.articles)}; path=/`
+
+            this.setCartTotalPrice()
+        }
+    }
+
+    // Définir le prix total du panier
     setCartTotalPrice()
     {
         let prixTotal = 0
@@ -353,5 +372,25 @@ export default class Cart
         document.querySelector('.total').innerHTML = prixTotal
 
         this.updateNbArticles()
+    }
+
+    /* Méthode concernant la confirmation du panier */
+    displayConfirmationCart()
+    {
+        const articles = JSON.parse(this.getCookie('cart'))
+        const articlesSection = document.querySelector('.resume_articles')
+        let total = 0
+
+        articles.forEach(({ id, name, cover, price, quantity, location, date, ticket }) =>
+        {
+            total += parseFloat(price) * parseFloat(quantity)
+            articlesSection.innerHTML += `
+                    <div class="resume_article">
+                        <strong>${name}</strong>
+                        <span>x${quantity} <span class="article_price">${parseFloat(price) * parseFloat(quantity)}€</span></span>
+                    </div>`
+        })
+
+        document.querySelector('.resume_total').innerHTML = `<span>Total: </span><span>${total}€</span>`
     }
 }

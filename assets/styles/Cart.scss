@@ -1,7 +1,15 @@
 .cart_wrapper
 {
+  position: relative;
   width: 100vw;
+  height: fit-content;
   padding: $padding;
+
+  @include lg
+  {
+    display: flex;
+  }
+
   .cart_articles_section
   {
     padding: $padding;
@@ -12,36 +20,57 @@
       position:relative;
       left: 10%;
       width: 40%;
+      margin-right: 15%;
     }
 
-    .empty_cart
+    .cart_recap_container
     {
-      padding:$padding;
-      background: $elementBackground;
-      border: 1px solid darkred;
-      border-radius: 10px;
-      width: fit-content;
-      margin-bottom: 20px;
-      user-select: none;
-      transition: 0.2s;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: end;
 
-      &:hover
+      .cart_recap
       {
-        background: darkred;
+        font-size: $fontSize * 1.5;
+      }
+
+      .empty_cart
+      {
+        padding:$padding;
+        background: $elementBackground;
+        border: 1px solid darkred;
+        border-radius: 10px;
+        width: fit-content;
+        user-select: none;
         transition: 0.2s;
-        cursor: pointer;
-      }
 
-      span
-      {
-        display: flex;
-        align-items: center;
+        &:hover
+        {
+          background: darkred;
+          transition: 0.2s;
+          cursor: pointer;
+        }
+
+        span
+        {
+          display: flex;
+          align-items: center;
+        }
+        img
+        {
+          height: 20px;
+          margin-right: 10px;
+        }
       }
-      img
-      {
-        height: 20px;
-        margin-right: 10px;
-      }
+    }
+
+    .cart_divider
+    {
+      width:100%;
+      height: 1px;
+      border-bottom: 1px solid $mainColor;
+      margin: $padding * 2 0;
     }
 
     .cart_article_wrapper
@@ -55,6 +84,11 @@
 
       background: $elementBackground;
       border-radius: 10px;
+
+      &:last-child
+      {
+        margin: 0;
+      }
 
       .cart_article_infos
       {
@@ -81,10 +115,12 @@
               left: 10px;
               display: flex;
               flex-direction:column;
+              width: calc(100% - 25px);
 
               strong
               {
                 font-size: $fontSize *1.1;
+                width:calc(100% - 10px);
               }
 
               span
@@ -113,6 +149,8 @@
               }
               img
               {
+                width:100%;
+                height:100%;
                 padding: 2px;
               }
             }
@@ -180,8 +218,7 @@
 
         @include lg
         {
-          justify-content: end;
-          align-items: end;
+          align-items: center;
         }
 
 
@@ -190,6 +227,104 @@
           height: 120%;
         }
       }
+    }
+  }
+
+  .cart_total_wrapper
+  {
+    padding: $padding * 2 $padding;
+    margin-bottom : 100px;
+    display: flex;
+    flex-direction: column;
+
+    @include lg
+    {
+      position:sticky;
+      left: 20vw;
+      top: 40px;
+      width: 25%;
+      height:fit-content;
+    }
+
+    strong
+    {
+      font-size: $fontSize*1.5;
+
+      span
+      {
+        font-size: $fontSize*1.5;
+        font-weight: 100;
+      }
+    }
+
+    .cart_divider
+    {
+      width:100%;
+      height: 1px;
+      border-bottom: 1px solid $mainColor;
+      margin: $padding * 2 0;
+
+      &:last-child
+      {
+        display: none;
+      }
+
+      @include lg
+      {
+        &:first-child
+        {
+          display: none;
+        }
+
+        &:last-child
+        {
+          display: block;
+        }
+      }
+    }
+
+    .cart_checkout
+    {
+      display: none;
+      position:relative;
+
+      width: 100%;
+
+      left:0;
+      top: 10px;
+
+      @include lg
+      {
+        display: block;
+      }
+    }
+  }
+
+  .cart_checkout
+  {
+    position:fixed;
+
+    width: 80%;
+    height: fit-content;
+
+    left: 10%;
+    bottom: 20px;
+    padding:$padding*2;
+
+    background: $mainColor;
+    border-radius:10px;
+    font-weight: 500;
+    text-align:center;
+    text-transform: uppercase;
+
+    a
+    {
+      color: $backgroundColor;
+    }
+
+    @include lg
+    {
+      display: none;
     }
   }
 }

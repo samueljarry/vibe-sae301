@@ -15,4 +15,18 @@ class CartController extends AbstractController
             'controller_name' => 'CartController',
         ]);
     }
+
+    #[Route('/panier/confirmation', name:'cart_confirm')]
+    public function confirmCart() : Response
+    {
+        $user = $this->getUser();
+        if(!$user)
+        {
+            return $this->redirectToRoute('app_login', ["cart"=>true]);
+        }
+
+        return $this->render('cart/confirmation.html.twig', [
+            'controller_name' => 'CartController',
+        ]);
+    }
 }

@@ -1,16 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}VIBE | Votre panier{% endblock %}
 
 {% block body %}
     <main class="cart_wrapper">
         <section class="cart_articles_section">
-            <div class="empty_cart">
-                <span><img src="{{ asset('assets/trash-outline.svg') }}" alt="icône de poubelle"> Vider le panier</span>
+            <div class="cart_recap_container">
+                <strong class="cart_recap">Récapitulatif</strong>
+                <div class="empty_cart">
+                    <span><img src="{{ asset('assets/trash-outline.svg') }}" alt="icône de poubelle"> Vider le panier</span>
+                </div>
+            </div>
+            <div class="cart_divider"></div>
+        </section>
+        <section class="cart_total_wrapper">
+            <div class="cart_divider"></div>
+            <strong>Total: <span class="total"></span><span>€</span></strong>
+            <div class="cart_divider"></div>
+            <div class="cart_checkout">
+                <a href="{{ path('cart_confirm') }}">Paiement</a>
             </div>
         </section>
-        <section class="cart_recap">
-            <div class="total"></div>
-        </section>
+        <div class="cart_checkout">
+            <a href="{{ path('cart_confirm') }}">Paiement</a>
+        </div>
     </main>
 {% endblock %}

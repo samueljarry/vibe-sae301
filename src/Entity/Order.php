@@ -27,6 +27,12 @@ class Order
     #[ORM\Column(length: 255)]
     private ?string $city = null;
 
+    #[ORM\Column]
+    private ?int $postalCode = null;
+
+    #[ORM\Column]
+    private ?int $price = null;
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
@@ -94,6 +100,30 @@ class Order
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPostalCode(int $postalCode): self
+    {
+        $this->price = $postalCode;
 
         return $this;
     }
