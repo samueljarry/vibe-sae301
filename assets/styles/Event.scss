@@ -432,7 +432,7 @@
         text-align:center;
         -moz-appearance: textfield;
         font-size: $fontSize * 2;
-
+        max-width: 20%;
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
           -webkit-appearance: none;

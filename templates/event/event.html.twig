@@ -22,7 +22,7 @@
                     </div>
                     <div class="reservation_date">
                         <img src="{{ asset('assets/calendar.svg') }}" alt="icône de calendrier">
-                        {{ event.__toString() }}
+                        <span>{{ event.__toString() }}</span>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
         <div class="reservation_modal">
             <div class="reservation_modal_recap">
                 <div class="recap">
-                    <img src="{{ asset('assets/ticket.svg') }}" alt="icône de ticket">
+                    <img class="reservation_ticket_icon" src="{{ asset('assets/ticket.svg') }}" alt="icône de ticket">
                     <span>
                         <span class="reservation_title_name">{{ event.title }} - {{ event.location.name }}</span>
                         <span>{{ event.price }} €</span>

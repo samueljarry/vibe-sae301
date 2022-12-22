@@ -5,16 +5,27 @@ export default class Cart
     constructor()
     {
         this.setCart()
+
+        // Ne se lance que si on est sur la page de réservation
         if(document.querySelector('.event_reservation_wrapper'))
         {
-            this.setListeners()
+            this.setReservationListeners()
             this.setReservationModal()
+        }
+
+        // Ne se lance que si on est sur le panier
+        if(document.querySelector('.cart_wrapper'))
+        {
+            this.displayCart()
         }
     }
 
     getCookie(cookieName)
     {
-        if(document.cookie.length == 0) return document.cookie = `cart=[]; path=/`;
+        if(document.cookie.length === 0)
+        {
+            return document.cookie = `cart=[]; path=/`
+        }
 
         let cookies = document.cookie.split("; "); //separe chaque parametre contenu dans le cookie
 
@@ -31,20 +42,26 @@ export default class Cart
     setCart()
     {
         this.liste = this.getCookie('cart')
-        this.articles
+        this.articles = []
 
         this.liste.length > 0 ? this.articles = JSON.parse(this.liste) : this.articles = Array()
         this.updateNbArticles()
     }
 
+    // Récupérer les données de l'articles
+    // puis déterminer si on doit l'ajouter à l'array ou augmenter sa qté
     updateCart()
     {
-        const { id, name, price, quantity } =
+        const { id, name, price, quantity, cover, date, location, ticket } =
         {
             id: document.querySelector('.reservation_id').value,
             name: document.querySelector('.reservation_title_name').innerText,
             price: document.querySelector('.reservation_price_default').value,
-            quantity: parseInt(document.querySelector('.reservation_tickets_number').value)
+            quantity: parseInt(document.querySelector('.reservation_tickets_number').value),
+            cover: document.querySelector('.reservation_img').src,
+            date: document.querySelector('.reservation_date span').innerText,
+            location: document.querySelector('.reservation_location').innerText,
+            ticket: document.querySelector('.reservation_ticket_icon').src
         }
 
         const increaseQty = (index, quantity) =>
@@ -55,14 +72,18 @@ export default class Cart
             this.updateNbArticles()
         }
 
-        const addToCart = (id, name, price, quantity) =>
+        const addToCart = (id, name, price, quantity, cover, date, location, ticket) =>
         {
             this.articles.push(
                 {
                     id,
                     name,
                     price,
-                    quantity
+                    quantity,
+                    cover,
+                    date,
+                    location,
+                    ticket
                 })
 
             document.cookie = `cart=${JSON.stringify(this.articles)}; path=/`
@@ -73,25 +94,36 @@ export default class Cart
         const articleIndex = this.articles.findIndex(index => index.id == id)
 
         // Si l'article est déjà présent dans le cookie on augmente simplement sa quantité, sinon on l'ajoute
-        articleIndex >= 0 ? increaseQty(articleIndex, quantity) : addToCart(id, name, price, quantity)
+        articleIndex >= 0 ? increaseQty(articleIndex, quantity) : addToCart(id, name, price, quantity, cover, date, location, ticket)
     }
 
+    // Changer le nombre d'articles à l'icône panier
     updateNbArticles()
     {
         let nbArticles = 0
         const panier = document.querySelector('.panier')
 
         this.articles.forEach(article => nbArticles += article.quantity)
-        panier.innerHTML = nbArticles
+        if(nbArticles > 0)
+        {
+            panier.style.display = 'flex'
+            panier.innerHTML = nbArticles
+        }
     }
 
-    setListeners()
+    /* Méthode page réservation */
+    setReservationListeners()
     {
         // Affichage Modale de réservation
         const reservationButton = document.querySelectorAll('.reservation_button')
+        let isModalActive = false
         reservationButton.forEach(button =>
         {
-            button.addEventListener('click', () => this.toggleReservationModal())
+            button.addEventListener('click', () =>
+            {
+                !isModalActive ? this.toggleReservationModal() : this.modalAnimation.reverse(0)
+                !isModalActive ? isModalActive = true : isModalActive = false
+            })
         })
 
         // Bouton + / - modale de réservation
@@ -101,7 +133,11 @@ export default class Cart
         const boutonPlus = document.querySelector('.reservation_plus')
         const spanPrix = document.querySelector('.reservation_add_to_cart')
         const closeModal = document.querySelector('.close_reservation_modal')
-        closeModal.addEventListener('click', () => this.modalAnimation.reverse(0))
+        closeModal.addEventListener('click', () =>
+        {
+            this.modalAnimation.reverse(0)
+            isModalActive = false
+        })
 
         places.addEventListener('change', () =>
         {
@@ -137,7 +173,12 @@ export default class Cart
 
         // Ajout de l'article au panier
         const boutonAjout = document.querySelector('.reservation_add_to_cart')
-        boutonAjout.addEventListener('click', () => this.updateCart())
+        boutonAjout.addEventListener('click', () =>
+        {
+            this.updateCart()
+            places.value = 1
+            changePrixTotal()
+        })
     }
 
     setReservationModal()
@@ -161,5 +202,110 @@ export default class Cart
             {
                 y: 0
             })
+    }
+
+    /* Méthode de la page panier */
+    displayCart()
+    {
+        const articles = JSON.parse(this.getCookie('cart'))
+        const articlesSection = document.querySelector('.cart_articles_section')
+
+        articles.forEach(({ id, name, cover, price, quantity, location, date, ticket }) =>
+        {
+            articlesSection.innerHTML += `
+                <div class="cart_article_wrapper">
+                    <div class="cart_article_infos">
+                        <div class="cart_infos_container">
+                            <div>
+                                <img class="cart_ticket_icon" src="${ticket}" alt="icône de ticket">
+                            </div>
+                            <div class="cart_infos">
+                                <strong>${name}</strong>
+                                <span>${date}</span>
+                            </div>
+                        </div>
+                        <div class="cart_tickets_qty">
+                            <div class="cart_ticket_container">
+                                <input type="hidden" class="cart_article_id" value="${id}">
+                                <input type="hidden" class="cart_article_price" value="${price}">
+                                <span class="cart_minus">-</span>
+                                <input class="cart_article_tickets" type="number" value="${quantity}" min="1" max="99">
+                                <span class="cart_plus">+</span>
+                            </div>
+                            <div class="cart_tickets_price">
+                                ${price * quantity} €
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart_article_img">
+                        <img src="${cover}" alt="affiche d'un évènement">
+                    </div>
+                </div>`
+        })
+
+        const minus = document.querySelectorAll('.cart_minus')
+        minus.forEach(button => button.addEventListener('click', () => this.handleCartButtons(button, -1)))
+
+        const plus = document.querySelectorAll('.cart_plus')
+        plus.forEach(button => button.addEventListener('click', () => this.handleCartButtons(button, +1)))
+
+        let nbPlaces =  document.querySelectorAll('.cart_article_tickets')
+        nbPlaces.forEach(article => article.addEventListener('change', () => this.setCartArticlePrice(article)))
+        this.setCartTotalPrice()
+    }
+
+    setCartArticlePrice(article)
+    {
+        let quantity = parseFloat(article.value)
+        const id = article.parentNode.querySelector('.cart_article_id').value
+
+        if(quantity >= 0)
+        {
+            let price = parseFloat(article.parentNode.querySelector('.cart_article_price').value)
+            const totalPrice = article.parentNode.parentNode.querySelector('.cart_tickets_price').innerHTML = `${price * quantity} €`
+
+
+            /* Cookie */
+            const articleIndex = this.articles.findIndex(article => article.id === id)
+            this.articles[articleIndex].quantity = quantity
+            document.cookie = `cart=${JSON.stringify(this.articles)}; path=/`
+
+            this.setCartTotalPrice()
+        }
+    }
+
+    handleCartButtons(button, method)
+    {
+        let quantitySpan =  button.parentNode.querySelector('.cart_article_tickets')
+        let quantity = parseFloat(quantitySpan.value)
+        const id = button.parentNode.querySelector('.cart_article_id').value
+
+        if(quantity + method >= 0)
+        {
+            quantity += method
+            quantitySpan.value = quantity
+
+            let price = parseFloat(button.parentNode.querySelector('.cart_article_price').value)
+            const totalPrice = button.parentNode.parentNode.querySelector('.cart_tickets_price').innerHTML = `${price * quantity} €`
+
+            /* Cookie */
+            const articleIndex = this.articles.findIndex(article => article.id === id)
+            this.articles[articleIndex].quantity = quantity
+            document.cookie = `cart=${JSON.stringify(this.articles)}; path=/`
+
+            this.setCartTotalPrice()
+        }
+    }
+
+    setCartTotalPrice()
+    {
+        let prixTotal = 0
+        this.articles.forEach(article => {
+            prixTotal += parseFloat(article.price) * parseFloat(article.quantity)
+        })
+
+        document.querySelector('.total').innerHTML = prixTotal
+
+        this.updateNbArticles()
     }
 }

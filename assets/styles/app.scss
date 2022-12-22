@@ -3,6 +3,7 @@
 @import '__breakpoints.scss';
 @import 'Home.scss';
 @import 'Event.scss';
+@import 'Cart.scss';
 
 *, body
 {
@@ -70,6 +71,46 @@ body {
                         {
                             height: 25px;
                             width: 25px;
+                        }
+                    }
+
+                    div
+                    {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        position:relative;
+
+                        @include lg
+                        {
+                            width: 25px;
+                            height: 25px;
+                        }
+
+                        .panier
+                        {
+                            display: none;
+                            position:absolute;
+                            align-items: center;
+                            justify-content: center;
+                            background: $mainColor;
+                            padding: $padding;
+                            border-radius: 50px;
+                            text-align:center;
+                            font-size: 12px;
+
+                            width: 8px;
+                            height: 8px;
+                            bottom: 10px;
+                            left: 15px;
+
+                            @include lg
+                            {
+                                width:15px;
+                                height:15px;
+                                bottom: 15px;
+                                left: 20px;
+                            }
                         }
                     }
                 }
