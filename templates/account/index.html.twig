@@ -36,10 +36,10 @@
                                     </div>
                                 {% endfor %}
                             </div>
-                            <div class="download_pdf">
+                            <a href="{{ path('set_pdf', {'order': order.id}) }}.pdf" class="download_pdf">
                                 <span>Télécharger la facture</span>
                                 <img src="{{ asset('assets/download.svg') }}" alt="icône de téléchargement">
-                            </div>
+                            </a>
                         </div>
                     </div>
                 {% endfor %}

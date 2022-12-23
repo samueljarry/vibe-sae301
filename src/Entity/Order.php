@@ -121,7 +121,7 @@ class Order
 
     public function getPostalCode(): ?int
     {
-        return $this->price;
+        return $this->postalCode;
     }
 
     public function setPostalCode(int $postalCode): self

@@ -1,0 +1,75 @@
+<head>
+    <title>Vibe | Votre facture</title>
+    <link rel="stylesheet" href="https://use.typekit.net/qdd0fql.css">
+</head>
+<style>
+    .pdf
+    {
+        font-family: 'neue-haas-grotesk-text', sans-serif;
+        margin: 0;
+        padding:0;
+    }
+
+    table
+    {
+        width:100%;
+        font-size: 18px;
+        margin: 0;
+        padding:0;
+    }
+
+    thead
+    {
+        background: lightgray;
+    }
+
+    td
+    {
+        padding: 10px;
+    }
+
+    td strong
+    {
+    }
+
+    .num
+    {
+        text-align: right;
+    }
+
+</style>
+
+<body class="pdf">
+    <h1>VIBE - Facture n°{{ order.id }}</h1>
+    <h1>Client</h1>
+    <h2>
+        {{ order.firstName }} {{ order.lastName }} <br>
+        {{ order.address }}<br>
+        {{ order.postalCode }} {{ order.city }} <br>
+        Le {{ order.date | date('d/m/Y') }}
+    </h2>
+    <h1>
+        Récapitulatif de commande
+    </h1>
+    <table>
+        <thead>
+        <th><strong>Article</strong></th>
+        <th><strong>Quantité</strong></th>
+        <th><strong>Prix</strong></th>
+        </thead>
+        <tbody>
+        {% for event in order.events %}
+        <tr>
+            <td>{{ event.name }} - {{ event.location }}</td>
+            <td class="num">x{{ event.quantity }}</td>
+            <td class="num">{{ event.price }}€</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td><strong>Total</strong></td>
+            <td class="num"></td>
+            <td class="num"><strong>{{ order.price }}</strong>€</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
