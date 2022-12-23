@@ -17,7 +17,7 @@ class EventController extends AbstractController
         ]);
     }
 
-    #[Route('/evenements/{event}', name: 'event_page')]
+    #[Route('/evenements/{event}', name: 'event_page', options: ['expose' => true])]
     public function renderEventPage(Event $event) : Response
     {
         return $this->render('event/event.html.twig',

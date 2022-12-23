@@ -38,7 +38,7 @@
       .empty_cart
       {
         padding:$padding;
-        background: $elementBackground;
+        background: #34343488;
         border: 1px solid darkred;
         border-radius: 10px;
         width: fit-content;
@@ -212,6 +212,7 @@
       .cart_article_img
       {
         display: flex;
+        align-items: center;
         justify-content: center;
         width:35%;
         overflow: hidden;
@@ -224,7 +225,7 @@
 
         img
         {
-          height: 120%;
+          height: 131%;
         }
       }
     }

@@ -111,9 +111,16 @@ class Event
         return $this;
     }
 
-    public function getLocation(): ?Location
+    public function getLocation()
     {
-        return $this->location;
+        $location = $this->location;
+        return [
+            'id' => $location->getId(),
+            'name' => $location->getName(),
+            'address' => $location->getAddress(),
+            'city' => $location->getCity(),
+            'capability' => $location->getCapability()
+        ];
     }
 
     public function setLocation(?Location $location): self
@@ -145,5 +152,10 @@ class Event
         $this->casting = $casting;
 
         return $this;
+    }
+
+    public function getPath()
+    {
+        return 'evenements/'.$this->getId().'';
     }
 }

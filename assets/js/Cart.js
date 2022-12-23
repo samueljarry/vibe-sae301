@@ -115,10 +115,15 @@ export default class Cart
     // Changer le nombre d'articles à l'icône panier
     updateNbArticles()
     {
-        let nbArticles = 0
         const panier = document.querySelector('.panier')
 
-        this.articles.forEach(article => nbArticles += article.quantity)
+        // Donne la quantité de tous les articles comme nombre d'éléments dans le panier
+        //let nbArticles = 0
+        //this.articles.forEach(article => nbArticles += article.quantity)
+
+        // Donne le nombre d'articles différent comme nb d'éléments dans le panier
+        let nbArticles = this.articles.length
+
         panier.innerHTML = nbArticles
         if(nbArticles > 0)
         {

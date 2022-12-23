@@ -12,6 +12,7 @@
         "doctrine/orm": "^2.13",
         "dompdf/dompdf": "^2.0",
         "easycorp/easyadmin-bundle": "^4.4",
+        "friendsofsymfony/jsrouting-bundle": "^3.2",
         "symfony/console": "6.2.*",
         "symfony/dotenv": "6.2.*",
         "symfony/flex": "^2",

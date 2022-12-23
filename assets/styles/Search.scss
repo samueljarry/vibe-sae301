@@ -1,0 +1,179 @@
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration
+{
+  display: none;
+}
+
+input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
+
+
+.search_wrapper
+{
+  display:none;
+  flex-direction: column;
+  position:fixed;
+  z-index: 9999;
+  align-items: center;
+
+  top: 0;
+  left: 0;
+  width:100vw;
+  height: 100vh;
+  will-change: true;
+
+  background: #1B1B1BDD;
+
+  .close_search_container
+  {
+    position:relative;
+    top:10%;
+    display: flex;
+    justify-content: end;
+    width: 80%;
+    height:fit-content;
+
+    @include lg
+    {
+      width: 50%;
+    }
+
+    span
+    {
+      padding: $padding;
+      background: #34343488;
+      color:$mainColor;
+      border: 1px solid $elementBackground;
+      font-weight:500;
+      border-radius:10px;
+      transition: 0.2s;
+
+      &:hover
+      {
+        cursor:pointer;
+        border: 1px solid $mainColor;
+        transition: 0.2s;
+      }
+    }
+  }
+
+  .search_input_wrapper
+  {
+    position:relative;
+    top: 10%;
+    display: flex;
+    align-items: end;
+
+    padding: $padding * 2;
+    width: 80%;
+    height:fit-content;
+    border: 1px solid $mainColor;
+    border-radius: 10px;
+    background: #34343488;
+    margin-top: 10px;
+
+    @include lg
+    {
+      width: 50%;
+    }
+
+    .search_input_container
+    {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    input
+    {
+      width:100%;
+      margin: 0;
+      padding: 0;
+      background:none;
+      color: $fontColor;
+      border:none;
+      user-select: none;
+
+      outline:none;
+    }
+
+    img
+    {
+      height: 25px;
+    }
+  }
+
+  .search_results
+  {
+    overflow:scroll;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-height: 80%;
+
+    position:relative;
+    top: calc(10% + 20px);
+
+    @include lg
+    {
+      width: 50%;
+    }
+
+    .search_result
+    {
+      display: flex;
+      align-items: start;
+      background: $elementBackground;
+      padding: $padding;
+      border-radius:10px;
+      border: 1px solid $elementBackground;
+      margin-bottom: 10px;
+      transition: 0.2s;
+
+      &:hover
+      {
+        border: 1px solid $mainColor;
+        transition: 0.2s;
+      }
+
+      img
+      {
+        height: 100px;
+        border-radius:5px;
+      }
+
+      .search_result_infos
+      {
+        height:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5px $padding;
+
+        @include lg
+        {
+          padding: 5px $padding*2;
+        }
+
+        .search_result_infos_main
+        {
+          display: flex;
+          flex-direction: column;
+        }
+        .search_result_name
+        {
+          font-size: $fontSize *1.2;
+          font-weight: 500;
+        }
+
+        .search_result_price
+        {
+          color:$mainColor;
+        }
+      }
+    }
+  }
+}

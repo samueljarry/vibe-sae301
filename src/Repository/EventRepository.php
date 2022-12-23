@@ -51,6 +51,17 @@ class EventRepository extends ServiceEntityRepository
         return $date->format(('H:i:s'));
     }
 
+    public function findByTitle($value): array
+    {
+        return $this->createQueryBuilder('e')
+            ->select('DISTINCT e')
+            ->andWhere('e.title LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Event[] Returns an array of Event objects
 //     */

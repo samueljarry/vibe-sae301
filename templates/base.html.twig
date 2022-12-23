@@ -16,16 +16,33 @@
     <body>
             <header class="header">
                 <nav>
-                    <strong class="header_logo">VIBE</strong>
+                    <div class="nav_events">
+                        <a href="#"><span>Évènements</span> <img class="nav_theater" src="{{ asset('assets/theater.svg') }}" alt="icône de théâtre"> </a>
+                        <a href="#"><span>Lieux</span><img src="{{ asset('assets/location.svg') }}" alt="icône de lieux"> </a>
+                    </div>
+                    <a href="{{ path('app_home') }}" class="header_logo">VIBE</a>
                     <div class="nav_links">
-                        <a href="#"> <img class="nav_theater" src="{{ asset('assets/theater.svg') }}" alt="icône de théâtre"> </a>
-                        <a href="#"> <img src="{{ asset('assets/location.svg') }}" alt="icône de lieux"> </a>
-                        <a href="#"> <img src="{{ asset('assets/search.svg') }}" alt="icône de recherche"> </a>
+                        <img class="display_search" src="{{ asset('assets/search.svg') }}" alt="icône de loupe">
                         <a href="{{ path('app_cart') }}"> <div><img src="{{ asset('assets/cart.svg') }}" alt="icône de panier"> <span class="panier"></span></div></a>
                         <a href="{{ path('app_account') }}"> <img src="{{ asset('assets/person.svg') }}" alt="icône de profil"> </a>
                     </div>
                 </nav>
             </header>
+            <section class="search_wrapper">
+                <div class="close_search_container">
+                    <span class="close_search">
+                        Fermer
+                    </span>
+                </div>
+                <div class="search_input_wrapper">
+                        <div class="search_input_container">
+                            <input type="hidden" class="search_action" value="{{ path('ajax_search') }}">
+                            <input type="search" name="search" class="search" placeholder="Trouver un évènement">
+                            <img src="{{ asset('assets/search.svg') }}" alt="icône de loupe">
+                        </div>
+                </div>
+                <div class="search_results"></div>
+            </section>
         {% block body %}{% endblock %}
     </body>
 </html>
