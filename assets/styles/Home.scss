@@ -38,6 +38,7 @@
   .event_container
   {
     width: 60vw;
+    min-width: 240px;
     height: 370px;
     background: $elementBackground;
     border-radius:10px;

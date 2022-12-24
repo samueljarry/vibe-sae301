@@ -1,0 +1,155 @@
+.connexion_form
+{
+  display: flex;
+  flex-direction: column;
+  position:relative;
+  padding: $padding * 2;
+  align-items: center;
+
+  .deconnexion
+  {
+    a
+    {
+      color: $mainColor;
+      border-bottom:1px solid $mainColor;
+    }
+  }
+
+  .connexion_heading
+  {
+    font-size: $fontSize *1.5;
+    margin-bottom: 20px;
+
+    @include lg
+    {
+      position:relative;
+      top:20px;
+    }
+  }
+
+  .connexion_form_row
+  {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    margin-bottom: 15px;
+    background: #34343488;
+    border: 1px solid $elementBackground;
+    padding: $padding;
+    border-radius: 10px;
+    color: $fontColor;
+
+    &:focus
+    {
+      border: 1px solid $mainColor;
+      outline:none;
+      user-select: none;
+    }
+
+    &::placeholder
+    {
+      color:lightgray;
+    }
+  }
+
+  .connexion_form_container
+  {
+    padding: $padding;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+
+    @include lg
+    {
+      position:relative;
+      top:50px;
+      width: 400px;
+    }
+
+    label
+    {
+      margin-bottom: 5px;
+    }
+
+    input
+    {
+      margin-bottom: 15px;
+      background: #34343488;
+      border: 1px solid $elementBackground;
+      padding: $padding;
+      border-radius: 10px;
+      color: $fontColor;
+
+      &:focus
+      {
+        border: 1px solid $mainColor;
+        outline:none;
+        user-select: none;
+      }
+
+      &::placeholder
+      {
+        color:lightgray;
+      }
+    }
+
+    .connexion_terms
+    {
+      width: 100%;
+      display: flex;
+      height:fit-content;
+      div
+      {
+        width: 100%;
+        height:fit-content;
+        display:flex;
+        flex-direction: row-reverse;
+        align-items: start;
+        justify-content: space-between;
+        padding: $padding;
+
+        input
+        {
+          width: 15px;
+          height: 15px;
+
+          background: #34343488;
+        }
+      }
+    }
+  }
+}
+
+.connexion_cta
+{
+  padding: $padding;
+  background: $mainColor;
+  color: $elementBackground;
+  border: 1px solid $mainColor;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: 0.2s;
+
+  &:hover
+  {
+    cursor:pointer;
+    border: 1px solid $mainColor;
+    color: $mainColor;
+    transition: 0.2s;
+    background: #34343488;
+  }
+
+  &:focus
+  {
+    background: #34343488;
+    border: 1px solid $mainColor;
+    color: $mainColor;
+    outline:none;
+    user-select: none;
+  }
+
+  .register
+  {
+    width:100%;
+  }
+}

@@ -19,13 +19,13 @@
                     </a>
                 </div>
                 <div class="event_price_category">
-                    <span><img class="icon" src="{{ asset('assets/pricetag.svg') }}"> {{ event.price }}€</span><span>{{ event.category.name }}</span>
+                    <span><img class="icon" alt="icône de prix" src="{{ asset('assets/pricetag.svg') }}"> {{ event.price }}€</span><span>{{ event.category.name }}</span>
                 </div>
                 <div class="event_infos">
                     <a href={{ path('event_page', {'event':event.id}) }}>
                         <strong class="event_title">{{ event.title }}</strong>
-                        <span class="event_date"><img class="icon" src="{{ asset('assets/calendar.svg') }}"> {{ event.__toString() }}</span>
-                        <span class="event_location"><img class="icon" src="{{ asset('assets/location.svg') }}">{{ event.location.name }}</span>
+                        <span class="event_date"><img class="icon" alt="icône de calendrier" src="{{ asset('assets/calendar.svg') }}"> {{ event.__toString() }}</span>
+                        <span class="event_location"><img class="icon" alt="icône de position" src="{{ asset('assets/location.svg') }}">{{ event.location.name }}</span>
                     </a>
                 </div>
             </div>

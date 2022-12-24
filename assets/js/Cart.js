@@ -9,8 +9,8 @@ export default class Cart
         // Ne se lance que si on est sur la page de réservation
         if(document.querySelector('.event_reservation_wrapper'))
         {
-            this.setReservationListeners()
             this.setReservationModal()
+            this.setReservationListeners()
         }
 
         // Ne se lance que si on est sur le panier

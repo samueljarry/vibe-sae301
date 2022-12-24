@@ -7,15 +7,25 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
+    {{ form_start(registrationForm, {'attr': {'class': 'connexion_form'}}) }}
+        <h1 class="connexion_heading">S'inscrire</h1>
+        <div class="connexion_form_container">
+            {{ form_row(registrationForm.email, {
+                'attr': {'class': 'connexion_form_row register'},
+                placeholder: 'johndoe@exemple.com'
+            }) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Mot de passe',
+                placeholder: 'Au moins 6 caractères',
+                'attr': {'class': 'connexion_form_row register'}
+            }) }}
+            <div class="connexion_terms">
+                {{ form_row(registrationForm.agreeTerms,
+                    {
+                        label: "Accepter les conditions d'utilisation",
+                }) }}
+            </div>
+            <button type="submit" class="connexion_cta">Inscription</button>
+        </div>
     {{ form_end(registrationForm) }}
 {% endblock %}
