@@ -93,12 +93,30 @@ class Location
         return $this;
     }
 
-    /**
-     * @return Collection<int, Event>
-     */
-    public function getEvents(): Collection
+
+    public function getEvents()
     {
-        return $this->events;
+        $events = $this->events;
+        $eventArray = [];
+
+        foreach($events as $event)
+        {
+            array_push($eventArray,
+            [
+                'id' => $event->getId(),
+                'title' => $event->getTitle(),
+                'price' => $event->getPrice(),
+                'description' => $event->getDescription(),
+                'cover' => $event->getCover(),
+                'date' => $event->getDate(),
+                'category' => $event->getCategory(),
+                'casting' => $event->getCasting(),
+                'location' => $event->getLocation(),
+
+            ]);
+        }
+
+        return $eventArray;
     }
 
     public function addEvent(Event $event): self

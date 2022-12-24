@@ -39,6 +39,17 @@ class LocationRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByName($value): array
+    {
+        return $this->createQueryBuilder('l')
+            ->select('DISTINCT l')
+            ->andWhere('l.name LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Location[] Returns an array of Location objects
 //     */

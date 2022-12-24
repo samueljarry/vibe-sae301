@@ -59,19 +59,31 @@ export default class Search
         })
         .then(response => response.json())
         // Affichage des résultats de la recherche
-        .then(({events}) => this.displaySearchResults(events))
+        .then(({events}) => {
+            this.displaySearchResults(events)
+        })
 
     }
 
     displaySearchResults(results)
     {
+        // Avec l'ajout des lieux dans la recherche on peut avoir 2 fois un évènement qui apparaît
+        // Cette fonction permet de filtrer les résultats pour qu'on ne les ai qu'une seule fois
+
+        const curatedResults = []
+        results.map((result, index) =>
+        {
+            const test = curatedResults.findIndex(index => index.id == result.id)
+            test < 0 ? curatedResults.push(result) : console.log('déjà dedans')
+        })
+
         const searchResultsContainer = document.querySelector('.search_results')
 
         // On vide les résultats de recherche précédents
         searchResultsContainer.innerHTML = ''
 
         // L'HTML pour chacun des résultats trouvés
-        results.map(result =>
+        curatedResults.map(result =>
         {
             searchResultsContainer.innerHTML += `
                 <a class="search_result" href="${Routing.generate("event_page", {event: result.id})}">

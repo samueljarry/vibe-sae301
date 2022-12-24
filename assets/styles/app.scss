@@ -38,6 +38,17 @@ body {
         height: 90px;
         width:100%;
 
+        .header_logo
+        {
+            height:100%;
+            display: flex;
+            align-items: center;
+            img
+            {
+                height: 90%;
+            }
+        }
+
         nav
         {
             display: flex;
