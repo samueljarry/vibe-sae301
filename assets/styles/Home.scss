@@ -37,8 +37,7 @@
 
   .event_container
   {
-    width: 60vw;
-    min-width: 240px;
+    width: 240px;
     height: 370px;
     background: $elementBackground;
     border-radius:10px;
@@ -71,6 +70,7 @@
     {
       display: flex;
       position:relative;
+      left: 5px;
       bottom: 26px;
       padding: $padding 0;
       span

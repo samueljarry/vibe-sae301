@@ -16,6 +16,7 @@ export default class Search
         // Prise en charge de l'input de recherche
         const action = document.querySelector('.search_action')
         const search = document.querySelector('.search')
+        let query
 
         // Prise en charge de l'icône de recherche dans la navigation
         const searchIcon = document.querySelector('.display_search')
@@ -30,11 +31,11 @@ export default class Search
         // Récupération du texte de la recherche
         search.addEventListener('keydown', () =>
         {
-            const query = search.value
+            query = search.value
         })
         search.addEventListener('keyup', () =>
         {
-            const query = search.value
+            query = search.value
             if(search.value !== '')
             {
                 this.setAjax(action, search, query)

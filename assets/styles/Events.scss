@@ -1,0 +1,158 @@
+.filters_wrapper
+{
+  padding: 0 $padding ;
+  .filters_categories
+  {
+    padding: $padding;
+    display: flex;
+    overflow-x:scroll;
+
+    &::-webkit-scrollbar
+    {
+      display: none;
+    }
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    .category_filter
+    {
+        width:fit-content;
+        display: flex;
+        cursor: pointer;
+        font-weight: 500;
+        position: relative;
+        margin-right: 10px;
+
+        input {
+          width:0;
+          height:0;
+          opacity:0;
+          &:checked + span {
+            border: 1px solid $mainColor;
+            background: $elementBackground;
+          }
+        }
+        span {
+          display: flex;
+          align-items: center;
+          padding: $padding;
+          border-radius: 10px;
+          transition: 0.25s ease;
+          border: 1px solid $elementBgAlpha;
+
+          &:hover {
+            border: 1px solid $mainColor;
+          }
+        }
+    }
+  }
+}
+
+main
+{
+  display: flex;
+  justify-content: center;
+  width:100vw;
+
+  .events_section.events
+  {
+    width: 90%;
+    overflow-x: unset;
+    flex-wrap: wrap;
+    justify-content: start;
+    padding: 0;
+
+    .event_container
+    {
+      width: 45%;
+      height: 250px;
+      margin: 5px auto;
+      @include md
+      {
+        width:240px;
+        height: 370px;
+      }
+
+      .event_cover
+      {
+        width:100%;
+        height: 130px;
+
+        @include md
+        {
+          width:100%;
+          height: 220px;
+        }
+
+        a
+        {
+          align-items: center;
+
+          @include md
+          {
+            align-items: end;
+
+            img
+            {
+              width: unset;
+              height: 110%;
+            }
+          }
+
+          img
+          {
+            width: 100%;
+            height:unset;
+          }
+        }
+      }
+
+      .event_price_category
+      {
+        display: none;
+
+        @include md
+        {
+          display: flex;
+        }
+      }
+
+      .event_infos
+      {
+        top: 15px;
+        width:100%;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        text-overflow:ellipsis ;
+        white-space: nowrap;
+
+        @include md
+        {
+          top:0;
+          overflow:unset;
+          width:unset;
+          justify-content: end;
+        }
+
+        .event_title
+        {
+          width:100%;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .no_results
+  {
+    width:100%;
+    height: 60vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    font-size: $fontSize * 1.75;
+    font-weight: 500;
+  }
+}

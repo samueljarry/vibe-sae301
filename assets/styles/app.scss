@@ -2,6 +2,7 @@
 @import '__fonts.scss';
 @import '__breakpoints.scss';
 @import 'Home.scss';
+@import 'Events.scss';
 @import 'Event.scss';
 @import 'Cart.scss';
 @import 'CartConfirmation.scss';
@@ -78,6 +79,21 @@ body {
                     display: flex;
                     align-items: center;
                     margin: 0 10px;
+                    width: fit-content;
+                    background: $mainColor;
+                    border-radius: 10px;
+                    padding: $padding;
+                    color: $elementBackground;
+                    font-weight:500;
+                    border: 1px solid $mainColor;
+                    transition:0.2s;
+                    &:hover
+                    {
+                        background: #34343488;
+                        color: $mainColor;
+                        transition:0.2s;
+                    }
+
                     span
                     {
                         display: none;

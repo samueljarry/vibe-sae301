@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Repository\CategoryRepository;
+use App\Repository\EventRepository;
+use App\Repository\LocationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,10 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class EventController extends AbstractController
 {
     #[Route('/evenements', name: 'app_event')]
-    public function index(): Response
+    public function index(EventRepository $eventRepository, CategoryRepository $categoryRepository, LocationRepository $locationRepository): Response
     {
         return $this->render('event/index.html.twig', [
-            'controller_name' => 'EventController',
+            'events' => $eventRepository->findAll(),
+            'categories' => $categoryRepository->findAll(),
+            'locations' => $locationRepository->findAll()
         ]);
     }
 

@@ -1,20 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EventController!{% endblock %}
+{% block title %}VIBE{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="location_wrapper">
+        <label for="location">Salle: </label>
+        <select class="filter_location" name="location">
+            <option value="toutes">Toutes</option>
+            {% for location in locations %}
+                <option value="{{ location.name }}">{{ location.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="filters_wrapper">
+        <div class="filter_price">
+            <input type="range" value="50" max="50" name="price" id="" class="price_filter">
+            <span class="max_price">50€</span>
+        </div>
+        <div class="filters_categories">
+                <label for="tout" class="category_filter">
+                    <input id="tout" checked type="radio" name="category"/>
+                    <span class="category_name">Tout</span>
+                </label>
+            {% for category in categories %}
+                <label for="{{ category.name }}" class="category_filter">
+                    <input id="{{ category.name }}" type="radio" name="category"/>
+                    <span class="category_name">{{ category.name }}</span>
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+<main>
+    <section class="events_section events">
+        {% for event in events %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/sam/tp_docker/www/sae301/src/Controller/EventController.php'|file_link(0) }}">src/Controller/EventController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/sam/tp_docker/www/sae301/templates/event/index.html.twig'|file_link(0) }}">templates/event/index.html.twig</a></code></li>
-    </ul>
-</div>
+            <div class="event_container">
+                <input type="hidden" name="price" value="{{ event.price }}" class="event_price">
+                <input type="hidden" name="price" value="{{ event.location.name }}" class="event_location_hidden">
+                <div class="event_cover">
+                    <a href={{ path('event_page', {'event':event.id}) }}>
+                        <img src="{{ asset('events/' ~event.cover) }}" alt="affiche {{ event.title }}">
+                    </a>
+                </div>
+                <div class="event_price_category">
+                    <span><img class="icon" alt="icône de prix" src="{{ asset('assets/pricetag.svg') }}">{{ event.price }}€</span><span class="event_category">{{ event.category.name }}</span>
+                </div>
+                <div class="event_infos">
+                    <a href={{ path('event_page', {'event':event.id}) }}>
+                        <strong class="event_title">{{ event.title }}</strong>
+                        <div>
+                            <span class="event_date"><img class="icon" alt="icône de calendrier" src="{{ asset('assets/calendar.svg') }}"> {{ event.__toString() }}</span>
+                            <span class="event_location"><img class="icon" alt="icône de position" src="{{ asset('assets/location.svg') }}">{{ event.location.name }}</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="no_results"></div>
+    </section>
+</main>
 {% endblock %}
