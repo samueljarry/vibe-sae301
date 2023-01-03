@@ -4,7 +4,10 @@ import {horizontalLoop} from "./Utils";
 export default class Animations
 {
     constructor() {
-        this.setMarqueeAnimation()
+        if(document.querySelector('.marquee_wrapper'))
+        {
+            this.setMarqueeAnimation()
+        }
     }
 
     setMarqueeAnimation()
