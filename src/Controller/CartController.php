@@ -29,7 +29,7 @@ class CartController extends AbstractController
         // Redirection si non connectés ou panier vide
         if(!$this->getUser())
         {
-            return $this->redirectToRoute('app_login', ["cart"=>true]);
+            return $this->redirectToRoute('app_login');
         }
         if($cart == [])
         {
@@ -51,7 +51,7 @@ class CartController extends AbstractController
         // Redirection si non connectés ou panier vide
         if(!$this->getUser())
         {
-            return $this->redirectToRoute('app_login', ["cart"=>true]);
+            return $this->redirectToRoute('app_login');
         }
         if($cart == [])
         {

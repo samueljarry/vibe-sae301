@@ -16,7 +16,7 @@ class AccountController extends AbstractController
     {
         if(!$this->getUser())
         {
-            return $this->redirectToRoute('app_login', ["cart"=>true]);
+            return $this->redirectToRoute('app_login');
         }
 
         $orders = $this->getUser()->getOrders();

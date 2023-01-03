@@ -7,3 +7,4 @@ import Filter from "./js/Filter";
 new Cart()
 new Search()
 new Filter()
+new Animations()

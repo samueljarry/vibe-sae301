@@ -4,10 +4,11 @@
   width: 100vw;
   height: fit-content;
   padding: $padding;
-
+  display: flex;
+  flex-direction: column;
   @include lg
   {
-    display: flex;
+    flex-direction: row;
   }
 
   .cart_articles_section
@@ -18,9 +19,8 @@
     @include lg
     {
       position:relative;
-      left: 10%;
       width: 40%;
-      margin-right: 15%;
+      margin-right: 50px;
     }
 
     .cart_recap_container
@@ -241,7 +241,6 @@
     @include lg
     {
       position:sticky;
-      left: 20vw;
       top: 40px;
       width: 25%;
       height:fit-content;

@@ -36,11 +36,14 @@ export default class Filter
         {
             this.price = parseInt(price.value)
             document.querySelector('.max_price').innerText = `${this.price}€`
+
+            price.style.backgroundSize = `${price.value * 2}% 100%`
+
             this.applyFilters(this.categoryName, this.price, this.location)
         })
 
         // Filtre par salle
-        const location = document.querySelector('.filter_location')
+        const location = document.querySelector('.filters_location')
         location.addEventListener('change', () =>
         {
             this.location = location.value

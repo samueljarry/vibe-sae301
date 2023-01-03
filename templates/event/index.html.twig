@@ -3,19 +3,24 @@
 {% block title %}VIBE{% endblock %}
 
 {% block body %}
-    <div class="location_wrapper">
-        <label for="location">Salle: </label>
-        <select class="filter_location" name="location">
-            <option value="toutes">Toutes</option>
-            {% for location in locations %}
-                <option value="{{ location.name }}">{{ location.name }}</option>
-            {% endfor %}
-        </select>
-    </div>
     <div class="filters_wrapper">
-        <div class="filter_price">
-            <input type="range" value="50" max="50" name="price" id="" class="price_filter">
-            <span class="max_price">50€</span>
+        <div class="loc_price_container">
+            <div class="location_wrapper">
+                <label for="location">Salle: </label>
+                <select class="filters_location" name="location">
+                    <option value="toutes">Toutes</option>
+                    {% for location in locations %}
+                        <option value="{{ location.name }}">{{ location.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="filters_price">
+                <label for="price">Prix max: </label>
+                <div>
+                    <input type="range" value="50" max="50" name="price" id="" class="price_filter">
+                    <span class="max_price">50€</span>
+                </div>
+            </div>
         </div>
         <div class="filters_categories">
                 <label for="tout" class="category_filter">

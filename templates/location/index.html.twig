@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vibe{% endblock %}
+
+{% block body %}
+    <section class="locations_section">
+            <strong>Nos salles</strong>
+        <div class="all_locations">
+            {% for location in locations %}
+                <div class="location_wrapper">
+                    <div class="location_container">
+                        <div class="location_name_container">
+                            <strong>{{ location.name }}</strong><br>
+                        </div>
+                        <span>{{ location.address }}, {{ location.city }} <br><span>{{ location.capability }} places</span></span>
+                    </div>
+                    <div class="locations_events">
+                        <div class="locations_events_strong">
+                            <strong>
+                                Prochainement:
+                            </strong>
+                        </div>
+                        <ul class="locations_events_lists">
+                            {% for event in location.events %}
+                                <a href="{{ path('event_page', {'event':event.id}) }}">
+                                    {{ event.title }}
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

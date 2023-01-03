@@ -12,11 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
 
-    /**
-     * Creates a new ActionItem entity.
-     *
-     * @Route("/search", name="ajax_search")
-     */
+    #[Route('/search', name:'ajax_search')]
     public function searchResults(Request $request, EventRepository $eventRepository, LocationRepository $locationRepository)
     {
         if($request->isXmlHttpRequest())

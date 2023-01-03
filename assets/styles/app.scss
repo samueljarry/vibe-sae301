@@ -9,6 +9,7 @@
 @import 'Account.scss';
 @import 'Search.scss';
 @import 'Login.scss';
+@import 'Location.scss';
 
 *, body
 {
@@ -29,7 +30,6 @@ body {
     overscroll-behavior-y: none;
     background-color: $backgroundColor;
     color: $fontColor;
-    user-select: none;
 
     .header
     {
