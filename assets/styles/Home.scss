@@ -24,7 +24,7 @@
     overflow:hidden;
     margin-bottom: $padding;
     white-space: nowrap;
-
+    max-width: unset;
     border-bottom: 1px solid $mainColor;
     border-top: 1px solid $mainColor;
     padding: 30px 0;
@@ -37,7 +37,7 @@
       font-size: 70px;
       width: fit-content;
       text-transform: uppercase;
-
+      max-width: unset;
       color: $mainColor;
       font-weight: 800;
 
