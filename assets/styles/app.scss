@@ -274,6 +274,9 @@ body {
     height: fit-content;
     padding: $padding*4;
 
+    max-width:100vw;
+    overflow-x: hidden;
+
     background:black;
 
     @include lg
