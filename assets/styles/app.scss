@@ -37,6 +37,8 @@ body {
     section
     {
         min-height: calc(100vh - 90px);
+        max-width: 100vw;
+        overflow-x: hidden;
     }
 
     .header
