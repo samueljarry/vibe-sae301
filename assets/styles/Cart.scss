@@ -335,7 +335,7 @@
 
   .cart_is_empty
   {
-    position:absolute;
+    position:relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -343,7 +343,6 @@
     left:0;
     width:100vw;
     height: calc(100vh - 90px);
-    display: none;
 
     img
     {

@@ -1,20 +1,19 @@
 .event_reservation_wrapper
 {
-  position:absolute;
+  position:relative;
 
   display: flex;
   flex-direction: column;
 
-  top:0;
+  bottom:90px;
   left:0;
-
   width:100vw;
 
   @include lg
   {
     z-index: 10;
-    position:relative;
     flex-direction: row;
+    bottom: 0;
   }
 
   .reservation_img_container
@@ -308,7 +307,7 @@
 
   .reservation_button
   {
-    position:fixed;
+    position:sticky;
 
     width: 80%;
     height: fit-content;

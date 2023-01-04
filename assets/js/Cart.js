@@ -56,10 +56,11 @@ export default class Cart
 
     setCart()
     {
+        this.getCookie('cart')
         this.liste = this.getCookie('cart')
         this.articles = []
 
-        this.liste.length > 0 ? this.articles = JSON.parse(this.liste) : this.articles = Array()
+        this.liste.length > 0 ? this.articles = JSON.parse(this.liste) : this.articles = JSON.parse(Array())
         this.updateNbArticles()
     }
 
@@ -68,16 +69,16 @@ export default class Cart
     updateCart()
     {
         const { id, name, price, quantity, cover, date, location, ticket } =
-        {
-            id: document.querySelector('.reservation_id').value,
-            name: document.querySelector('.reservation_title').innerText,
-            price: document.querySelector('.reservation_price_default').value,
-            quantity: parseInt(document.querySelector('.reservation_tickets_number').value),
-            cover: document.querySelector('.reservation_img').src,
-            date: document.querySelector('.reservation_date span').innerText,
-            location: document.querySelector('.reservation_location').innerText,
-            ticket: document.querySelector('.reservation_ticket_icon').src
-        }
+            {
+                id: document.querySelector('.reservation_id').value,
+                name: document.querySelector('.reservation_title').innerText,
+                price: document.querySelector('.reservation_price_default').value,
+                quantity: parseInt(document.querySelector('.reservation_tickets_number').value),
+                cover: document.querySelector('.reservation_img').src,
+                date: document.querySelector('.reservation_date span').innerText,
+                location: document.querySelector('.reservation_location').innerText,
+                ticket: document.querySelector('.reservation_ticket_icon').src
+            }
 
         const increaseQty = (index, quantity) =>
         {
@@ -220,25 +221,25 @@ export default class Cart
     setReservationModal()
     {
         gsap.timeline()
-        .set('.reservation_modal',
-        {
-            display:'none',
-            y: '110%'
-        })
+            .set('.reservation_modal',
+                {
+                    display:'none',
+                    y: '110%'
+                })
     }
 
     // Afficher ou Cacher la modale en fonction de la méthode
     toggleReservationModal()
     {
         this.modalAnimation = gsap.timeline()
-        .set('.reservation_modal',
-        {
-            display:'block',
-        })
-        .to('.reservation_modal',
-        {
-            y: 0
-        })
+            .set('.reservation_modal',
+                {
+                    display:'block',
+                })
+            .to('.reservation_modal',
+                {
+                    y: 0
+                })
     }
 
     /* Méthode de la page panier */

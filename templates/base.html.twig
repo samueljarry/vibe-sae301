@@ -45,6 +45,54 @@
                 </div>
                 <div class="search_results"></div>
             </section>
-        {% block body %}{% endblock %}
+
+            {% block body %}{% endblock %}
+
+            <footer class="footer">
+                <div class="footer_logo_container">
+                    <img src="{{ asset('assets/vibe_orange.svg') }}" alt="logo vibe">
+                </div>
+                <div class="footer_links_wrapper">
+                    <div class="footer_links_container">
+                        <div class="footer_links_category">
+                            <span>VIBE</span>
+                        </div>
+                        <ul class="footer_links_list">
+                            <li>À propos</li>
+                            <li>Jobs</li>
+                            <li>Diversité, Équité, Inclusion</li>
+                            <li>Presse</li>
+                        </ul>
+                    </div>
+                    <div class="footer_links_container">
+                        <div class="footer_links_category">
+                            <span>Soutien</span>
+                        </div>
+                        <ul class="footer_links_list">
+                            <li>Centre d'assistance</li>
+                            <li>Demander un remboursement</li>
+                        </ul>
+                    </div>
+                    <div class="footer_links_container">
+                        <div class="footer_links_category">
+                            <span>S'abonner</span>
+                        </div>
+                        <ul class="footer_links_list">
+                            <li>Instagram</li>
+                            <li>LinkedIn</li>
+                            <li>Twitter</li>
+                        </ul>
+                    </div>
+                    <div class="footer_links_container">
+                        <div class="footer_links_category">
+                            <span>Parcourir</span>
+                        </div>
+                        <ul class="footer_links_list">
+                            <a href="{{ path('app_event') }}">Artistes</a>
+                            <a href="{{ path('app_location') }}">Salles</a>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
     </body>
 </html>

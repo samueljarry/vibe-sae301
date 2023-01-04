@@ -5,6 +5,7 @@
   position:relative;
   padding: $padding * 2;
   align-items: center;
+  min-height:100vh;
 
   .deconnexion
   {
@@ -81,7 +82,7 @@
 
     input
     {
-      margin-bottom: 15px;
+      margin-bottom: 40px;
       background: #34343488;
       border: 1px solid $elementBackground;
       padding: $padding;
@@ -137,6 +138,7 @@
   border-radius: 10px;
   font-weight: 500;
   transition: 0.2s;
+  height: 60px;
 
   &:hover
   {
