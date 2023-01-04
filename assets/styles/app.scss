@@ -47,6 +47,9 @@ body {
         height: 90px;
         width:100%;
 
+        max-width:100vw;
+        overflow-x: hidden;
+
         .header_logo
         {
             height:100%;
