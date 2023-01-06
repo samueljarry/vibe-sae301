@@ -75,7 +75,7 @@ export default class Search
         results.map((result, index) =>
         {
             const test = curatedResults.findIndex(index => index.id == result.id)
-            test < 0 ? curatedResults.push(result) : console.log('déjà dedans')
+            test < 0 ? curatedResults.push(result) : null
         })
 
         const searchResultsContainer = document.querySelector('.search_results')

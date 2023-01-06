@@ -18,8 +18,6 @@
     box-sizing: border-box;
     font-family: 'neue-haas-grotesk-text', sans-serif;
     font-size: $fontSize;
-
-    max-width:100vw;
 }
 
 a
@@ -31,8 +29,6 @@ a
 body {
     width: 100%;
     max-width:100%;
-    overflow-x: hidden;
-    overscroll-behavior-y: none;
     background-color: $backgroundColor;
     color: $fontColor;
 

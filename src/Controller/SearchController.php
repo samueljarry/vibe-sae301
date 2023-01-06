@@ -27,7 +27,7 @@ class SearchController extends AbstractController
                 array_push($eventArray,
                 [
                     "title" => $event->getTitle(),
-                    "location" => $event->getLocation(),
+                    "location" => $event->getLocationSearch(),
                     "price" => $event->getPrice(),
                     "cover" => $event->getCover(),
                     "date" => $event->getDate(),

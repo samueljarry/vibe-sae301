@@ -11,7 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 
 class EventCrudController extends AbstractCrudController
 {
@@ -24,20 +24,19 @@ class EventCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-            MoneyField::new('price')
-                ->setCurrency('EUR'),
-            ImageField::new('cover')
+            TextField::new('title', 'Titre'),
+            TextEditorField::new('description', 'Description'),
+            IntegerField::new('price', 'Prix (€)'),
+            ImageField::new('cover', 'Affiche')
                 ->setBasePath('events/')
-                ->setUploadDir('assets/images/events')
+                ->setUploadDir('public/events')
                 ->setUploadedFileNamePattern('[randomhash].[extension]'),
             AssociationField::new('location', 'Lieux')
                 ->setCrudController(LocationCrudController::class),
             AssociationField::new('category', 'Catégorie')
                 ->setCrudController(CategoryCrudController::class),
-            ArrayField::new('casting'),
-            DateTimeField::new('date')
+            ArrayField::new('casting', 'Casting'),
+            DateTimeField::new('date', 'Date')
         ];
     }
 }

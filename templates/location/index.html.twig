@@ -22,9 +22,11 @@
                         </div>
                         <ul class="locations_events_lists">
                             {% for event in location.events %}
-                                <a href="{{ path('event_page', {'event':event.id}) }}">
-                                    {{ event.title }}
-                                </a>
+                                <li>
+                                    <a href="{{ path('event_page', {'event':event.id}) }}">
+                                        {{ event.title }}
+                                    </a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>

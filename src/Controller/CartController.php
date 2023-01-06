@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Order;
-use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mime\Email;
 
 class CartController extends AbstractController
 {
@@ -42,7 +43,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/confirmation_paiement', name:'cart_payment')]
-    public function payCart(Request $request, EntityManagerInterface $entityManager) : Response
+    public function payCart(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer) : Response
     {
         // Récupération cookie et des infos du formulaire de la page de confirmation
         $cart = json_decode($request->cookies->get('cart'), true);
@@ -66,9 +67,10 @@ class CartController extends AbstractController
         }
 
         // Récupération de l'entité order et création d'une instance
+        $user = $this->getUser();
         $order = new Order;
         $order
-            ->setUser($this->getUser())
+            ->setUser($user)
             ->setEvents($cart)
             ->setPrice($orderPrice)
             ->setFirstName($getForm['first_name'])
@@ -81,6 +83,17 @@ class CartController extends AbstractController
         // Envoi et sauvegarde de la commande dans la base de données
         $entityManager->persist($order);
         $entityManager->flush();
+
+        $email = (new Email())
+            ->from('mmi21c10@mmi-troyes.fr')
+            ->to($user->getEmail())
+            //->cc('cc@example.com')
+            ->bcc('samuel.jarry@etudiant.univ-reims.fr')
+            ->subject('Validation de votre commande')
+            ->text('Merci de votre commande chez Vibe')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
 
 
         return  $this->redirectToRoute('app_thanks');

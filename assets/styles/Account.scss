@@ -3,8 +3,18 @@
   width:100vw;
   padding: $padding*2;
 
+  .disconnect
+  {
+    padding: $padding $padding*2;
+    background: $mainColor;
+
+    color: $elementBackground;
+    border-radius:10px;
+  }
+
   .orders_wrapper
   {
+    margin-top: $padding * 2;
     @include lg
     {
       padding: $padding*2;
@@ -65,6 +75,7 @@
             background: $mainColor;
             width:fit-content;
             border-radius:10px;
+            color: $elementBackground;
           }
 
           .order_divider

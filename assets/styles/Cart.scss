@@ -173,7 +173,8 @@
           .cart_ticket_container
           {
             padding: 0 $padding;
-            span
+
+            .cart_minus, .cart_plus
             {
               color: $fontColor;
               background: $mainColor;

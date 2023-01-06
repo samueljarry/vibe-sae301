@@ -273,8 +273,8 @@ export default class Cart
                             <div class="cart_ticket_container">
                                 <input type="hidden" class="cart_article_id" value="${id}">
                                 <input type="hidden" class="cart_article_price" value="${price}">
-                                <span class="cart_minus">-</span>
-                                <input class="cart_article_tickets" type="number" value="${quantity}" min="1" max="99">
+                                <label for="number" class="cart_minus">-</label>
+                                <input class="cart_article_tickets" id="number" type="number" value="${quantity}" min="1" max="99">
                                 <span class="cart_plus">+</span>
                             </div>
                             <div class="cart_tickets_price">

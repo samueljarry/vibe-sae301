@@ -111,7 +111,12 @@ class Event
         return $this;
     }
 
-    public function getLocation()
+    public function getLocation(): object
+    {
+        return $this->location;
+    }
+
+    public function getLocationSearch()
     {
         $location = $this->location;
         return [

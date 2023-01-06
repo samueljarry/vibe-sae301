@@ -111,7 +111,7 @@ class Location
                 'date' => $event->getDate(),
                 'category' => $event->getCategory(),
                 'casting' => $event->getCasting(),
-                'location' => $event->getLocation(),
+                'location' => $event->getLocationSearch(),
 
             ]);
         }

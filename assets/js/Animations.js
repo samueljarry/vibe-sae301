@@ -14,6 +14,6 @@ export default class Animations
     {
         const marqueeItems = gsap.utils.toArray('.marquee_item'),
             loop = horizontalLoop(marqueeItems, {paused: true});
-        marqueeItems.forEach((marqueeItem, i) => loop.toIndex(i, {duration: 18, ease: "none", repeat: -1}))
+        marqueeItems.forEach((marqueeItem, i) => loop.toIndex(i, {duration: 24, ease: "none", repeat: -1}))
     }
 }
